@@ -16,9 +16,7 @@
         };
       };
 
-      let dataset;
-
-      d3.csv("data.csv", rowConverter, d => {
+      let getYearsWithoutHurricanes = d => {
         yearsWithoutHurricanes = [];
         for(let i = 0; i < d.length - 1; i++) {
           let currentYear = d[i].year;
@@ -26,22 +24,38 @@
           if (nextYear - currentYear > 1) {
             currentYear++;
             while (currentYear < nextYear) {
-              yearsWithoutHurricanes.push({ year: currentYear, category: [] });
+              yearsWithoutHurricanes.push({ year: currentYear });
               currentYear++;
             }
           }
         }
+        return yearsWithoutHurricanes;
+      }
+
+      let dataset;
+
+      d3.csv("data.csv", rowConverter, d => {
+        let yearsWithoutHurricanes = getYearsWithoutHurricanes(d);
 
         d = d.concat(yearsWithoutHurricanes).sort((a, b) => a.year - b.year);
 
         dataset = d3.nest()
                     .key(d => d.year)
-                    .rollup(v => v.map(obj => obj.category))
+                    .rollup(v => v.filter(obj => obj.category)
+                                  .map(obj => obj.category))
                     .entries(d)
-                    .map(obj => ({
-                      year: parseYear(obj.key),
-                      hurricanes: obj.value
-                    }));
+                    .map(obj => {
+                      let result = {
+                        year: parseYear(obj.key),
+                        cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0
+                      }
+
+                      obj.value.forEach(category => {
+                        result["cat" + category] += 1;
+                      });
+
+                      return result;
+                    });
 
         loadDataVis();
       });
@@ -64,8 +78,8 @@
 
         let yScale = d3.scaleLinear()
                        .domain([
-                         d3.min(dataset, d => d.hurricanes.length),
-                         d3.max(dataset, d => d.hurricanes.length)
+                         d3.min(dataset, d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5),
+                         d3.max(dataset, d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5)
                        ])
                        .range([h - p.top, p.bottom]);
 
@@ -92,8 +106,8 @@
                       .enter()
                       .append("rect")
                       .attr("x", d => xScale(d.year))
-                      .attr("y", d => yScale(d.hurricanes.length))
-                      .attr("height", d => h - p.top - yScale(d.hurricanes.length))
+                      .attr("y", d => yScale(d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5))
+                      .attr("height", d => h - p.top - yScale(d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5))
                       .attr("width", 2)
                       .attr("fill", "green");
 
@@ -102,7 +116,7 @@
         //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
 
     		let xSeries= dataset.map(d => xScale(d.year));
-    		let ySeries = dataset.map(d => yScale(d.hurricanes.length));
+    		let ySeries = dataset.map(d => yScale(d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5));
 
     		let leastSquaresCoeff = leastSquares(xSeries, ySeries);
 
@@ -140,7 +154,3 @@
     </script>
   </body>
 </html>
-
-<!-- [
-{year: cat1: cat2: cat3: cat4: cat5: sum:}
-] -->
