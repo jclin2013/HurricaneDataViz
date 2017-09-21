@@ -37,12 +37,11 @@
 
         dataset = d3.nest()
                     .key(d => d.year)
-                    .rollup(v => v.filter(obj => obj.category)
-                                  .map(obj => obj.category))
+                    .rollup(v => v.filter(obj => obj.category).length)
                     .entries(d)
                     .map(obj => ({
                       year: parseYear(obj.key),
-                      hurricanes: obj.value
+                      numOfHurricanes: obj.value
                     }));
 
         loadDataVis();
@@ -66,8 +65,8 @@
 
         let yScale = d3.scaleLinear()
                        .domain([
-                         d3.min(dataset, d => d.hurricanes.length),
-                         d3.max(dataset, d => d.hurricanes.length)
+                         d3.min(dataset, d => d.numOfHurricanes),
+                         d3.max(dataset, d => d.numOfHurricanes)
                        ])
                        .range([h - p.top, p.bottom]);
 
@@ -94,8 +93,8 @@
                       .enter()
                       .append("rect")
                       .attr("x", d => xScale(d.year))
-                      .attr("y", d => yScale(d.hurricanes.length))
-                      .attr("height", d => h - p.top - yScale(d.hurricanes.length))
+                      .attr("y", d => yScale(d.numOfHurricanes))
+                      .attr("height", d => h - p.top - yScale(d.numOfHurricanes))
                       .attr("width", 2)
                       .attr("fill", "green");
 
@@ -104,7 +103,7 @@
         //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
 
     		let xSeries = dataset.map(d => xScale(d.year));
-    		let ySeries = dataset.map(d => yScale(d.hurricanes.length));
+    		let ySeries = dataset.map(d => yScale(d.numOfHurricanes));
 
     		let leastSquaresCoeff = leastSquares(xSeries, ySeries);
 
