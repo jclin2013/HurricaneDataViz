@@ -1327,14 +1327,14 @@ var data = [
     "cat4": 0,
     "cat5": 0
   },
-  {
-    "year": 2017,
-    "cat1": 0,
-    "cat2": 0,
-    "cat3": 0,
-    "cat4": 3,
-    "cat5": 0
-  }
+  // {
+  //   "year": 2017,
+  //   "cat1": 0,
+  //   "cat2": 0,
+  //   "cat3": 0,
+  //   "cat4": 3,
+  //   "cat5": 0
+  // }
 ];
 
 // 1851-1862
@@ -1348,19 +1348,21 @@ let count = 0;
 data.forEach(obj => {
   count++;
 
-  if (count % 11 === 0) {
-    subresult.year = (obj.year - 10) + "-" + obj.year;
-  }
-
   subresult.cat1 += obj.cat1;
   subresult.cat2 += obj.cat2;
   subresult.cat3 += obj.cat3;
   subresult.cat4 += obj.cat4;
   subresult.cat5 += obj.cat5;
 
-  if (count % 11 === 0) {
+  if (count % 5 === 0) {
+    subresult.year = (obj.year - 4) + "-" + obj.year;
     result.push(subresult);
     subresult = {cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
+  }
+
+  if (obj.year === 2016) {
+    subresult.year = String(2016);
+    result.push(subresult);
   }
 })
 
@@ -2167,5 +2169,280 @@ var bucketizedData2YR = [
     "cat4": 0,
     "cat5": 0,
     "year": "2015-2016"
+  }
+];
+
+var bucketizedData5YRWithRemainder = [
+  {
+    "cat1": 5,
+    "cat2": 2,
+    "cat3": 4,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1851-1855"
+  },
+  {
+    "cat1": 3,
+    "cat2": 3,
+    "cat3": 1,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1856-1860"
+  },
+  {
+    "cat1": 3,
+    "cat2": 2,
+    "cat3": 0,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1861-1865"
+  },
+  {
+    "cat1": 5,
+    "cat2": 4,
+    "cat3": 1,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1866-1870"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 3,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1871-1875"
+  },
+  {
+    "cat1": 4,
+    "cat2": 5,
+    "cat3": 4,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1876-1880"
+  },
+  {
+    "cat1": 1,
+    "cat2": 4,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1881-1885"
+  },
+  {
+    "cat1": 7,
+    "cat2": 5,
+    "cat3": 2,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1886-1890"
+  },
+  {
+    "cat1": 4,
+    "cat2": 2,
+    "cat3": 3,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1891-1895"
+  },
+  {
+    "cat1": 4,
+    "cat2": 3,
+    "cat3": 2,
+    "cat4": 2,
+    "cat5": 0,
+    "year": "1896-1900"
+  },
+  {
+    "cat1": 6,
+    "cat2": 0,
+    "cat3": 0,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1901-1905"
+  },
+  {
+    "cat1": 4,
+    "cat2": 4,
+    "cat3": 4,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1906-1910"
+  },
+  {
+    "cat1": 6,
+    "cat2": 2,
+    "cat3": 0,
+    "cat4": 2,
+    "cat5": 0,
+    "year": "1911-1915"
+  },
+  {
+    "cat1": 3,
+    "cat2": 2,
+    "cat3": 5,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1916-1920"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 1,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1921-1925"
+  },
+  {
+    "cat1": 1,
+    "cat2": 2,
+    "cat3": 2,
+    "cat4": 2,
+    "cat5": 0,
+    "year": "1926-1930"
+  },
+  {
+    "cat1": 1,
+    "cat2": 4,
+    "cat3": 4,
+    "cat4": 1,
+    "cat5": 1,
+    "year": "1931-1935"
+  },
+  {
+    "cat1": 3,
+    "cat2": 3,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1936-1940"
+  },
+  {
+    "cat1": 3,
+    "cat2": 3,
+    "cat3": 5,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1941-1945"
+  },
+  {
+    "cat1": 5,
+    "cat2": 3,
+    "cat3": 4,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1946-1950"
+  },
+  {
+    "cat1": 5,
+    "cat2": 0,
+    "cat3": 4,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1951-1955"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 1,
+    "cat4": 2,
+    "cat5": 0,
+    "year": "1956-1960"
+  },
+  {
+    "cat1": 1,
+    "cat2": 3,
+    "cat3": 2,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1961-1965"
+  },
+  {
+    "cat1": 2,
+    "cat2": 2,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 1,
+    "year": "1966-1970"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1971-1975"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1976-1980"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 4,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1981-1985"
+  },
+  {
+    "cat1": 6,
+    "cat2": 0,
+    "cat3": 0,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "1986-1990"
+  },
+  {
+    "cat1": 0,
+    "cat2": 2,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 1,
+    "year": "1991-1995"
+  },
+  {
+    "cat1": 3,
+    "cat2": 4,
+    "cat3": 2,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "1996-2000"
+  },
+  {
+    "cat1": 5,
+    "cat2": 2,
+    "cat3": 6,
+    "cat4": 1,
+    "cat5": 0,
+    "year": "2001-2005"
+  },
+  {
+    "cat1": 2,
+    "cat2": 2,
+    "cat3": 0,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "2006-2010"
+  },
+  {
+    "cat1": 3,
+    "cat2": 1,
+    "cat3": 0,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "2011-2015"
+  },
+  {
+    "cat1": 2,
+    "cat2": 0,
+    "cat3": 0,
+    "cat4": 0,
+    "cat5": 0,
+    "year": "2016"
   }
 ];

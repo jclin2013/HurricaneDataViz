@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hurricane Data Visualization</title>
+    <script src="./hurricane-data-json.js"></script>
+    <script src="./d3.js"></script>
+  </head>
+  <body>
+    <script>
+      let dataset = bucketizedData5YRWithRemainder;
+
+      let w = 600, h = 400;
+      let p = {top: 20, right: 20, bottom: 20, left: 20};
+
+      let svg = d3.select("body")
+                  .append("svg")
+                  .attr("width", w)
+                  .attr("height", h);
+
+      let xScale = d3.scaleBand()
+                     .domain(dataset.map(obj => obj.year))
+                     .range([p.left, w - p.right])
+                     .paddingInner(0.05);
+
+      let allHurricanes = d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5;
+
+      let yScale = d3.scaleLinear()
+                     .domain([
+                       0,
+                       d3.max(dataset, d => allHurricanes(d)) + 1
+                     ])
+                     .range([h - p.top, p.bottom]);
+
+
+      let xAxis = d3.axisBottom(xScale)
+                    .tickValues(xScale.domain().filter((d,i) => !(i % 4)));
+                    // .ticks(20)s
+                    // .tickValues([1851, 2017]);
+                    // .tickFormat(d3.timeFormat("%Y"));
+
+      let yAxis = d3.axisLeft(yScale)
+                    // .ticks(3);
+
+      let gx = svg.append("g")
+                  .attr("class", "x axis")
+                  .attr("transform", "translate(0," + (h - p.top) + ")")
+                  .call(xAxis);
+
+      let gy = svg.append("g")
+                  .attr("class", "y axis")
+                  .attr("transform", "translate(" + p.left + ", 0)")
+                  .call(yAxis);
+
+      let colors = d3.scaleOrdinal(d3.schemeCategory10);
+
+      let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
+                     .data(dataset)
+                     .enter()
+                     .append("rect")
+                     .attr("x", d => xScale(d.year))
+                     .attr("y", d => yScale(allHurricanes(d)))
+                     .attr("height", d => h - p.top - yScale(allHurricanes(d)))
+                     .attr("width", xScale.bandwidth())
+                     .attr("fill",  d => (d.year === "2016" ? "black" : "teal"));
+
+       let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
+       let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
+                      .data(dataset)
+                      .enter()
+                      .append("rect")
+                      .attr("x", d => xScale(d.year) + xScale.bandwidth()/4)
+                      .attr("y", d => yScale(majorHurricanes(d)))
+                      .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
+                      .attr("width", xScale.bandwidth()/2)
+                      .attr("fill", "red");
+
+      //Resources used to create best fit line were:
+      //http://bl.ocks.org/benvandyke/8459843
+      //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
+
+  		let xSeries = xScale.domain()
+                          .slice(0, -1)
+                          .map(year => xScale(year));
+
+  		let ySeriesAllHurricanes = dataset.slice(0, -1).map(d => yScale(allHurricanes(d)));
+
+  		let LSAllHurricanes = leastSquares(xSeries, ySeriesAllHurricanes);
+
+      //AH abbrev for All Hurricanes
+  		let x1 = xSeries[0];
+  		let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
+  		let x2 = xSeries[xSeries.length - 1] + xScale.bandwidth();
+  		let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
+      // console.log(`LSAllHurricanes`, LSAllHurricanes);
+      // console.log(y2AH, y1AH, x2, x1);
+      svg.append("line")
+    			.attr("class", "trendlineAllHurricanes")
+    			.attr("x1", x1)
+    			.attr("y1", y1AH)
+    			.attr("x2", x2)
+    			.attr("y2", y2AH)
+    			.attr("stroke", "#0a3f3e")
+    			// .attr("stroke-width", 1)
+          .attr("stroke-dasharray", "4, 5");
+
+      let ySeriesMajorHurricanes = dataset.slice(0, -1).map(d => yScale(d.cat3 + d.cat4 + d.cat5));
+      let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
+
+      //MH abbrev for Major Hurricanes
+  		let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
+  		let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
+      // console.log(`LSMajorHurricanes`, LSMajorHurricanes);
+
+      svg.append("line")
+    			.attr("class", "trendlineMajorHurricanes")
+    			.attr("x1", x1)
+    			.attr("y1", y1MH)
+    			.attr("x2", x2)
+    			.attr("y2", y2MH)
+    			.attr("stroke", "#931319")
+    			// .attr("stroke-width", 1)
+          .attr("stroke-dasharray", "4, 5");
+
+      function leastSquares(xSeries, ySeries) {
+        let sumFunc = (a, b) => a + b;
+      	let xBar = xSeries.reduce(sumFunc) / xSeries.length;
+      	let yBar = ySeries.reduce(sumFunc) / ySeries.length;
+
+      	let ssXX = xSeries.map(x => Math.pow(x - xBar, 2))
+      		                .reduce(sumFunc);
+
+      	let ssXY = xSeries.map((x, i) => (x - xBar) * (ySeries[i] - yBar))
+      		                .reduce(sumFunc);
+
+      	let slope = ssXY / ssXX;
+      	let intercept = yBar - (xBar * slope);
+
+      	return [slope, intercept];
+      }
+    </script>
+  </body>
+</html>
