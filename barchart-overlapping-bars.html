@@ -47,26 +47,21 @@
                     .map(obj => {
                       let result = {
                         year: parseYear(obj.key),
-                        majorHurricanes: 0, minorHurricanes: 0
+                        cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0
                       }
 
                       obj.value.forEach(category => {
-                        if (category < 3) { result.minorHurricanes++; }
-                        else { result.majorHurricanes++; }
+                        result["cat" + category] += 1;
                       });
 
                       return result;
                     });
 
-        stack = d3.stack()
-                  .keys("majorHurricanes minorHurricanes".split(" "));
-
-        series = stack(dataset);
         loadDataVis();
       });
 
       let loadDataVis = () => {
-        let w = 1500, h = 400;
+        let w = 1200, h = 200;
         let p = {top: 20, right: 20, bottom: 20, left: 20};
 
         let svg = d3.select("body")
@@ -83,14 +78,14 @@
 
         let yScale = d3.scaleLinear()
                        .domain([
-                         d3.min(dataset, d => d.majorHurricanes + d.minorHurricanes),
-                         d3.max(dataset, d => d.majorHurricanes + d.minorHurricanes)
+                         d3.min(dataset, d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5),
+                         d3.max(dataset, d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5)
                        ])
                        .range([h - p.top, p.bottom]);
 
 
         let xAxis = d3.axisBottom(xScale)
-                      // .ticks(50)
+                      .ticks(20)
                       .tickFormat(d3.timeFormat("%Y"));
 
         let yAxis = d3.axisLeft(yScale)
@@ -108,40 +103,27 @@
 
         let colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-        let groups = svg.selectAll("g.bargroups")
-                        .data(series)
-                        .enter()
-                        .append("g")
-                        .style("fill", d => {
-                          if (d.key === "majorHurricanes") {
-                            return "red";
-                          } else {
-                            return "teal";
-                          }
-                        });
+        let allHurricanes = d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5;
+        let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
+                       .data(dataset)
+                       .enter()
+                       .append("rect")
+                       .attr("x", d => xScale(d.year))
+                       .attr("y", d => yScale(allHurricanes(d)))
+                       .attr("height", d => h - p.top - yScale(allHurricanes(d)))
+                       .attr("width", 5)
+                       .attr("fill", "teal");
 
-        groups.append("title").text(d => d.key);
-
-        let bars = groups.selectAll("rect")
-                        .data(d => d.map(arr => {
-                          let modArr = [...arr];
-                          modArr.key = d.key;
-                          modArr.data = arr.data;
-                          return modArr;
-                        }))
+         let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
+         let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
+                        .data(dataset)
                         .enter()
                         .append("rect")
-                        .attr("x", d => xScale(d.data.year) - (d.key === "majorHurricanes" ? 0 : 1))
-                        .attr("y", d => yScale(d[1]))
-                        .attr("height", d => {
-                          if (d.key === "minorHurricanes") {
-
-                          } else {
-                            return yScale(d[0]) - yScale(d[1])
-                          }
-
-                        })
-                        .attr("width", d => d.key === "majorHurricanes" ? 2 : 5);
+                        .attr("x", d => xScale(d.year) + 1.5)
+                        .attr("y", d => yScale(majorHurricanes(d)))
+                        .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
+                        .attr("width", 2)
+                        .attr("fill", "red");
 
         //Resources used to create best fit line were:
         //http://bl.ocks.org/benvandyke/8459843
