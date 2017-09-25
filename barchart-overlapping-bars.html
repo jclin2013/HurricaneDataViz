@@ -59,7 +59,7 @@
       });
 
       let loadDataVis = () => {
-        let w = 400, h = 200;
+        let w = 1200, h = 400;
         let p = {top: 20, right: 20, bottom: 20, left: 20};
 
         let svg = d3.select("body")
@@ -128,7 +128,7 @@
         //http://bl.ocks.org/benvandyke/8459843
         //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
 
-    		let xSeries = dataset.map(d => xScale(d.year));
+    		let xSeries = xScale.domain().map(year => xScale(year));
     		let ySeriesAllHurricanes = dataset.map(d => yScale(allHurricanes(d)));
 
     		let LSAllHurricanes = leastSquares(xSeries, ySeriesAllHurricanes);
@@ -146,8 +146,9 @@
       			.attr("y1", y1AH)
       			.attr("x2", x2)
       			.attr("y2", y2AH)
-      			.attr("stroke", "teal")
-      			.attr("stroke-width", 1);
+      			.attr("stroke", "#0a3f3e")
+      			// .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "4, 5");
 
         let ySeriesMajorHurricanes = dataset.map(d => yScale(d.cat3 + d.cat4 + d.cat5));
         let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
@@ -163,8 +164,9 @@
       			.attr("y1", y1MH)
       			.attr("x2", x2)
       			.attr("y2", y2MH)
-      			.attr("stroke", "red")
-      			.attr("stroke-width", 1);
+      			.attr("stroke", "#931319")
+      			// .attr("stroke-width", 1)
+            .attr("stroke-dasharray", "4, 5");
 
         function leastSquares(xSeries, ySeries) {
           let sumFunc = (a, b) => a + b;
