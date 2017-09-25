@@ -7,8 +7,6 @@
   </head>
   <body>
     <script>
-      let parseYear = d3.timeParse("%Y");
-
       let rowConverter = d => {
         return {
           year: Number(d.Year),
@@ -32,7 +30,7 @@
         return yearsWithoutHurricanes;
       }
 
-      let dataset, series, stack;
+      let dataset;
 
       d3.csv("data.csv", rowConverter, d => {
         let yearsWithoutHurricanes = getYearsWithoutHurricanes(d);
@@ -46,7 +44,7 @@
                     .entries(d)
                     .map(obj => {
                       let result = {
-                        year: parseYear(obj.key),
+                        year: Number(obj.key),
                         cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0
                       }
 
@@ -69,24 +67,26 @@
                     .attr("width", w)
                     .attr("height", h);
 
-        let xScale = d3.scaleTime()
-                       .domain([
-                         d3.min(dataset, d => d.year),
-                         d3.max(dataset, d => d.year)
-                       ])
-                       .range([p.left, w - p.right]);
+        let xScale = d3.scaleBand()
+                       .domain(d3.range(1851, 2017))
+                       .range([p.left, w - p.right])
+                       .paddingInner(0.05);
+
+        let allHurricanes = d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5;
 
         let yScale = d3.scaleLinear()
                        .domain([
-                         d3.min(dataset, d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5),
-                         d3.max(dataset, d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5)
+                         d3.min(dataset, d => allHurricanes(d)),
+                         d3.max(dataset, d => allHurricanes(d))
                        ])
                        .range([h - p.top, p.bottom]);
 
 
         let xAxis = d3.axisBottom(xScale)
-                      .ticks(20)
-                      .tickFormat(d3.timeFormat("%Y"));
+                      .tickValues(xScale.domain().filter((d,i) => !(i % 10)));
+                      // .ticks(20)s
+                      // .tickValues([1851, 2017]);
+                      // .tickFormat(d3.timeFormat("%Y"));
 
         let yAxis = d3.axisLeft(yScale)
                       .ticks(3);
@@ -103,7 +103,6 @@
 
         let colors = d3.scaleOrdinal(d3.schemeCategory10);
 
-        let allHurricanes = d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5;
         let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
                        .data(dataset)
                        .enter()
@@ -111,7 +110,7 @@
                        .attr("x", d => xScale(d.year))
                        .attr("y", d => yScale(allHurricanes(d)))
                        .attr("height", d => h - p.top - yScale(allHurricanes(d)))
-                       .attr("width", 5)
+                       .attr("width", xScale.bandwidth())
                        .attr("fill", "teal");
 
          let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
@@ -119,10 +118,10 @@
                         .data(dataset)
                         .enter()
                         .append("rect")
-                        .attr("x", d => xScale(d.year) + 1.5)
+                        .attr("x", d => xScale(d.year) + xScale.bandwidth()/4)
                         .attr("y", d => yScale(majorHurricanes(d)))
                         .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
-                        .attr("width", 2)
+                        .attr("width", xScale.bandwidth()/2)
                         .attr("fill", "red");
 
         //Resources used to create best fit line were:
