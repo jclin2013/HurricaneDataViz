@@ -68,7 +68,7 @@
                     .attr("height", h);
 
         let xScale = d3.scaleBand()
-                       .domain(d3.range(1851, 2017))
+                       .domain(d3.range(1851, 2018))
                        .range([p.left, w - p.right])
                        .paddingInner(0.05);
 
@@ -134,47 +134,47 @@
         //http://bl.ocks.org/benvandyke/8459843
         //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
 
-    		let xSeries = xScale.domain().map(year => xScale(year));
-    		let ySeriesAllHurricanes = dataset.map(d => yScale(allHurricanes(d)));
+    		let xSeries = d3.range(1851, 2017);
+    		let ySeriesAllHurricanes = dataset.map(d => allHurricanes(d));
 
     		let LSAllHurricanes = leastSquares(xSeries, ySeriesAllHurricanes);
 
         //AH abbrev for All Hurricanes
     		let x1 = xSeries[0];
     		let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
-    		let x2 = xSeries[xSeries.length - 1] + xScale.bandwidth();
+    		let x2 = xSeries[xSeries.length - 1] + 1;
     		let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
-        console.log(`LSAllHurricanes Slope`, LSAllHurricanes[0]);
-        console.log(y2AH > y1AH);
+        console.log(`LSAllHurricanes`, LSAllHurricanes);
+        // console.log(y2AH > y1AH);
         // console.log(y2AH, y1AH, x2, x1);
         svg.append("line")
       			.attr("class", "trendlineAllHurricanes")
-      			.attr("x1", x1)
-      			.attr("y1", y1AH)
-      			.attr("x2", x2)
-      			.attr("y2", y2AH)
+      			.attr("x1", xScale(x1))
+      			.attr("y1", yScale(y1AH))
+      			.attr("x2", xScale(x2))
+      			.attr("y2", yScale(y2AH))
             .attr("stroke", "darkgreen")
       			.attr("stroke-width", 4)
-            .attr("stroke-dasharray", "12, 6");
-
-        let ySeriesMajorHurricanes = dataset.map(d => yScale(d.cat3 + d.cat4 + d.cat5));
-        let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
+            .attr("stroke-dasharray", "12, 4");
+        //
+        // let ySeriesMajorHurricanes = dataset.map(d => yScale(d.cat3 + d.cat4 + d.cat5));
+        // let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
 
         //MH abbrev for Major Hurricanes
-    		let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
-    		let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
-        console.log(`LSMajorHurricanes Slope`, LSMajorHurricanes[0]);
-        console.log(y2MH > y1MH);
-
-        svg.append("line")
-      			.attr("class", "trendlineMajorHurricanes")
-      			.attr("x1", x1)
-      			.attr("y1", y1MH)
-      			.attr("x2", x2)
-      			.attr("y2", y2MH)
-            .attr("stroke", "#931319")
-            .attr("stroke-width", 4)
-            .attr("stroke-dasharray", "12, 6");
+    		// let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
+    		// let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
+        // console.log(`LSMajorHurricanes Slope`, LSMajorHurricanes[0]);
+        // console.log(y2MH > y1MH);
+        //
+        // svg.append("line")
+      	// 		.attr("class", "trendlineMajorHurricanes")
+      	// 		.attr("x1", x1)
+      	// 		.attr("y1", y1MH)
+      	// 		.attr("x2", x2)
+      	// 		.attr("y2", y2MH)
+        //     .attr("stroke", "#931319")
+        //     .attr("stroke-width", 4)
+        //     .attr("stroke-dasharray", "12, 6");
 
         function leastSquares(xSeries, ySeries) {
           let sumFunc = (a, b) => a + b;
