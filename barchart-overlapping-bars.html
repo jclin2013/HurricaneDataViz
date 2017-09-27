@@ -136,7 +136,7 @@
         //AH abbrev for All Hurricanes
     		let x1 = xSeries[0];
     		let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
-    		let x2 = xSeries[xSeries.length - 1];
+    		let x2 = xSeries[xSeries.length - 1] + xScale.bandwidth();
     		let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
         // console.log(`LSAllHurricanes`, LSAllHurricanes);
         // console.log(y2AH, y1AH, x2, x1);
