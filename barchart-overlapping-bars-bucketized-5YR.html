@@ -113,24 +113,26 @@
     			.attr("stroke", "darkgreen")
     			.attr("stroke-width", 4)
           .attr("stroke-dasharray", "12, 7");
-      //
-      // let ySeriesMajorHurricanes = dataset.slice(0, -1).map(d => yScale(d.cat3 + d.cat4 + d.cat5));
-      // let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
-      //
+
+      let ySeriesMajorHurricanes = dataset.slice(0, -1).map(d => d.cat3 + d.cat4 + d.cat5);
+      let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
+
       // //MH abbrev for Major Hurricanes
-  		// let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
-  		// let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
-      // // console.log(`LSMajorHurricanes`, LSMajorHurricanes);
-      //
-      // svg.append("line")
-    	// 		.attr("class", "trendlineMajorHurricanes")
-    	// 		.attr("x1", x1)
-    	// 		.attr("y1", y1MH)
-    	// 		.attr("x2", x2)
-    	// 		.attr("y2", y2MH)
-    	// 		.attr("stroke", "#931319")
-      //     .attr("stroke-width", 4)
-      //     .attr("stroke-dasharray", "12, 7");
+  		let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
+  		let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
+      console.log(`LSMajorHurricanes`, LSMajorHurricanes);
+
+      svg.append("line")
+    			.attr("class", "trendlineMajorHurricanes")
+          .attr("x1", xScale(yearRangesHash[x1]))
+    			.attr("y1", yScale(y1MH))
+    			.attr("x2", xScale(yearRangesHash[x2]))
+    			.attr("y2", yScale(y2MH))
+    			.attr("stroke", "#931319")
+          .attr("stroke-width", 4)
+          .attr("stroke-dasharray", "12, 7")
+          .append("title")
+          .text(`${LSMajorHurricanes[0]}x + ${LSMajorHurricanes[1]}`);
 
       function leastSquares(xSeries, ySeries) {
         let sumFunc = (a, b) => a + b;
@@ -140,8 +142,13 @@
       	let ssXX = xSeries.map(x => Math.pow(x - xBar, 2))
       		                .reduce(sumFunc);
 
-      	let ssXY = xSeries.map((x, i) => (x - xBar) * (ySeries[i] - yBar))
+      	let ssXY = xSeries.map((x, i) => {
+          console.log(x, xBar, ySeries[i], yBar);
+          return (x - xBar) * (ySeries[i] - yBar)
+        })
       		                .reduce(sumFunc);
+
+        console.log(ssXX, ssXY);
 
       	let slope = ssXY / ssXX;
       	let intercept = yBar - (xBar * slope);
