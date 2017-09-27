@@ -59,7 +59,7 @@
       });
 
       let loadDataVis = () => {
-        let w = 1200, h = 400;
+        let w = 600, h = 300;
         let p = {top: 20, right: 20, bottom: 20, left: 20};
 
         let svg = d3.select("body")
@@ -144,7 +144,8 @@
     		let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
     		let x2 = xSeries[xSeries.length - 1] + xScale.bandwidth();
     		let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
-        // console.log(`LSAllHurricanes`, LSAllHurricanes);
+        console.log(`LSAllHurricanes Slope`, LSAllHurricanes[0]);
+        console.log(y2AH > y1AH);
         // console.log(y2AH, y1AH, x2, x1);
         svg.append("line")
       			.attr("class", "trendlineAllHurricanes")
@@ -162,7 +163,8 @@
         //MH abbrev for Major Hurricanes
     		let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
     		let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
-        // console.log(`LSMajorHurricanes`, LSMajorHurricanes);
+        console.log(`LSMajorHurricanes Slope`, LSMajorHurricanes[0]);
+        console.log(y2MH > y1MH);
 
         svg.append("line")
       			.attr("class", "trendlineMajorHurricanes")
