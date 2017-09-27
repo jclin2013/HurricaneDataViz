@@ -9,7 +9,7 @@
   <body>
     <script>
       let dataset = dataWith2017;
-      let w = 1200, h = 200;
+      let w = 1200, h = 400;
       let p = {top: 20, right: 20, bottom: 20, left: 20};
 
       let svg = d3.select("body")
@@ -33,12 +33,14 @@
 
 
       let xAxis = d3.axisBottom(xScale)
-                    .tickValues(xScale.domain().filter((d,i) => !(i % 16)));
+                    .tickValues(xScale.domain().filter((d,i) => !(i % 16)))
+                    .tickSizeOuter(0);
                     // .ticks(20)s
                     // .tickValues([1851, 2017]);
                     // .tickFormat(d3.timeFormat("%Y"));
 
       let yAxis = d3.axisLeft(yScale)
+                    .tickSizeOuter(0)
                     .ticks(3);
 
       let gx = svg.append("g")
@@ -51,6 +53,10 @@
                   .attr("transform", "translate(" + p.left + ", 0)")
                   .call(yAxis);
 
+      svg.selectAll(".tick")
+          .filter(d => d === 0)
+          .remove();
+
       let colors = d3.scaleOrdinal(d3.schemeCategory10);
 
       let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
@@ -61,7 +67,7 @@
                      .attr("y", d => yScale(allHurricanes(d)))
                      .attr("height", d => h - p.top - yScale(allHurricanes(d)))
                      .attr("width", xScale.bandwidth())
-                     .attr("fill", "teal");
+                     .attr("fill", "#9fc49f");
 
        let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
        let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
@@ -96,9 +102,9 @@
     			.attr("y1", y1AH)
     			.attr("x2", x2)
     			.attr("y2", y2AH)
-    			.attr("stroke", "#0a3f3e")
-    			// .attr("stroke-width", 1)
-          .attr("stroke-dasharray", "4, 5");
+          .attr("stroke", "darkgreen")
+    			.attr("stroke-width", 4)
+          .attr("stroke-dasharray", "12, 7");
 
       let ySeriesMajorHurricanes = dataset.map(d => yScale(d.cat3 + d.cat4 + d.cat5));
       let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
@@ -114,9 +120,9 @@
     			.attr("y1", y1MH)
     			.attr("x2", x2)
     			.attr("y2", y2MH)
-    			.attr("stroke", "#931319")
-    			// .attr("stroke-width", 1)
-          .attr("stroke-dasharray", "4, 5");
+          .attr("stroke", "#931319")
+          .attr("stroke-width", 4)
+          .attr("stroke-dasharray", "12, 7");
 
       function leastSquares(xSeries, ySeries) {
         let sumFunc = (a, b) => a + b;

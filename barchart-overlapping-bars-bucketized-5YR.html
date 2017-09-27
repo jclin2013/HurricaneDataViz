@@ -64,7 +64,7 @@
                      .data(dataset)
                      .enter()
                      .append("rect")
-                     .attr("x", d => xScale(d.year))
+                     .attr("x", d => xScale(d.year) + 1)
                      .attr("y", d => yScale(allHurricanes(d)))
                      .attr("height", d => h - p.top - yScale(allHurricanes(d)))
                      .attr("width", xScale.bandwidth())
@@ -75,7 +75,7 @@
                       .data(dataset)
                       .enter()
                       .append("rect")
-                      .attr("x", d => xScale(d.year) + xScale.bandwidth()/4)
+                      .attr("x", d => xScale(d.year) + xScale.bandwidth()/4 + 1)
                       .attr("y", d => yScale(majorHurricanes(d)))
                       .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
                       .attr("width", xScale.bandwidth()/2)
@@ -107,8 +107,8 @@
     			.attr("x2", x2)
     			.attr("y2", y2AH)
     			.attr("stroke", "darkgreen")
-    			// .attr("stroke-width", 1)
-          .attr("stroke-dasharray", "4, 5");
+    			.attr("stroke-width", 4)
+          .attr("stroke-dasharray", "12, 7");
 
       let ySeriesMajorHurricanes = dataset.slice(0, -1).map(d => yScale(d.cat3 + d.cat4 + d.cat5));
       let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
@@ -125,8 +125,8 @@
     			.attr("x2", x2)
     			.attr("y2", y2MH)
     			.attr("stroke", "#931319")
-    			// .attr("stroke-width", 1)
-          .attr("stroke-dasharray", "4, 5");
+          .attr("stroke-width", 4)
+          .attr("stroke-dasharray", "12, 7");
 
       function leastSquares(xSeries, ySeries) {
         let sumFunc = (a, b) => a + b;
