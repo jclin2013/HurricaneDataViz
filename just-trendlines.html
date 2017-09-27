@@ -60,7 +60,7 @@
 
       let loadDataVis = () => {
         let w = 570, h = 400;
-        let p = {top: 40, right: 30, bottom: 20, left: 40};
+        let p = {top: 40, right: 30, bottom: 20, left: 50};
 
         let svg = d3.select("body")
                     .append("svg")
@@ -68,7 +68,7 @@
                     .attr("height", h);
 
         let xScale = d3.scaleBand()
-                       .domain(d3.range(1851, 2018))
+                       .domain(d3.range(1830, 2034))
                        .range([p.left, w - p.right])
                        .paddingInner(0.05);
 
@@ -76,8 +76,8 @@
 
         let yScale = d3.scaleLinear()
                        .domain([
-                         d3.min(dataset, d => allHurricanes(d)),
-                         d3.max(dataset, d => allHurricanes(d)) + 2
+                         0,
+                         2.5
                        ])
                        .range([h - p.top, p.bottom]);
 
@@ -91,7 +91,7 @@
 
         let yAxis = d3.axisLeft(yScale)
                       .tickSizeOuter(0)
-                      .tickValues([1, 2, 3, 4, 5, 6, 7]);
+                      // .tickValues([1, 2, 3, 4, 5, 6, 7]);
 
         let gx = svg.append("g")
                     .attr("class", "x axis")
@@ -110,28 +110,28 @@
         svg.selectAll(".tick > text")
             .style("font-size", "25");
 
-        let colors = d3.scaleOrdinal(d3.schemeCategory10);
-
-        let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
-                       .data(dataset)
-                       .enter()
-                       .append("rect")
-                       .attr("x", d => xScale(d.year) + 1)
-                       .attr("y", d => yScale(allHurricanes(d)))
-                       .attr("height", d => h - p.top - yScale(allHurricanes(d)))
-                       .attr("width", xScale.bandwidth())
-                       .attr("fill", "#9fc49f");
-
-         let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
-         let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
-                        .data(dataset)
-                        .enter()
-                        .append("rect")
-                        .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
-                        .attr("y", d => yScale(majorHurricanes(d)))
-                        .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
-                        .attr("width", xScale.bandwidth()/2.5)
-                        .attr("fill", "pink");
+        // let colors = d3.scaleOrdinal(d3.schemeCategory10);
+        //
+        // let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
+        //                .data(dataset)
+        //                .enter()
+        //                .append("rect")
+        //                .attr("x", d => xScale(d.year) + 1)
+        //                .attr("y", d => yScale(allHurricanes(d)))
+        //                .attr("height", d => h - p.top - yScale(allHurricanes(d)))
+        //                .attr("width", xScale.bandwidth())
+        //                .attr("fill", "#9fc49f");
+        //
+        //  let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
+        //  let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
+        //                 .data(dataset)
+        //                 .enter()
+        //                 .append("rect")
+        //                 .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
+        //                 .attr("y", d => yScale(majorHurricanes(d)))
+        //                 .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
+        //                 .attr("width", xScale.bandwidth()/2.5)
+        //                 .attr("fill", "pink");
 
         //Resources used to create best fit line were:
         //http://bl.ocks.org/benvandyke/8459843
