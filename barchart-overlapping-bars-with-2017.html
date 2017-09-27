@@ -33,7 +33,7 @@
 
 
       let xAxis = d3.axisBottom(xScale)
-                    .tickValues(xScale.domain().filter((d,i) => !(i % 15)));
+                    .tickValues(xScale.domain().filter((d,i) => !(i % 16)));
                     // .ticks(20)s
                     // .tickValues([1851, 2017]);
                     // .tickFormat(d3.timeFormat("%Y"));
@@ -72,7 +72,7 @@
                       .attr("y", d => yScale(majorHurricanes(d)))
                       .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
                       .attr("width", xScale.bandwidth()/2)
-                      .attr("fill", "red");
+                      .attr("fill", "pink");
 
       //Resources used to create best fit line were:
       //http://bl.ocks.org/benvandyke/8459843
