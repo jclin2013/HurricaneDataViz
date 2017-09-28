@@ -4,11 +4,6 @@
     <meta charset="utf-8">
     <title>Hurricane Data Visualization</title>
     <script src="./d3.js"></script>
-    <style media="screen">
-      svg {
-        border: 1px solid black;
-      }
-    </style>
   </head>
   <body>
     <script>
@@ -64,8 +59,8 @@
       });
 
       let loadDataVis = () => {
-        let w = 1000, h = 400;
-        let p = {bottom: 50, right: 35, top: 60, left: 70};
+        let w = 570, h = 400;
+        let p = {top: 40, right: 30, bottom: 20, left: 80};
 
         let svg = d3.select("body")
                     .append("svg")
@@ -73,7 +68,7 @@
                     .attr("height", h);
 
         let xScale = d3.scaleBand()
-                       .domain(d3.range(1851, 2018))
+                       .domain(d3.range(1830, 2034))
                        .range([p.left, w - p.right])
                        .paddingInner(0.05);
 
@@ -81,10 +76,10 @@
 
         let yScale = d3.scaleLinear()
                        .domain([
-                         d3.min(dataset, d => allHurricanes(d)),
-                         d3.max(dataset, d => allHurricanes(d))
+                         0.58,
+                         0.59
                        ])
-                       .range([h - p.bottom, p.top]);
+                       .range([h - p.top, p.bottom]);
 
 
         let xAxis = d3.axisBottom(xScale)
@@ -92,15 +87,15 @@
                       .tickSizeOuter(0);
                       // .ticks(20)s
                       // .tickValues([1851, 2017]);
+                      // .tickFormat(d3.timeFormat("%Y"));
 
         let yAxis = d3.axisLeft(yScale)
                       .tickSizeOuter(0)
-                      .tickValues([1, 2, 3, 4, 5, 6, 7])
-                      .tickFormat(d3.format("d"));
+                      // .tickValues([1, 2, 3, 4, 5, 6, 7]);
 
         let gx = svg.append("g")
                     .attr("class", "x axis")
-                    .attr("transform", "translate(0," + (h - p.bottom) + ")")
+                    .attr("transform", "translate(0," + (h - p.top) + ")")
                     .call(xAxis);
 
         let gy = svg.append("g")
@@ -113,123 +108,59 @@
             .remove();
 
         svg.selectAll(".tick > text")
-            .style("font-size", "15");
+            .style("font-size", "25");
 
-        let title = svg.append("text")
-                       .attr("class", "chartTitle")
-                       .attr("width", w)
-                       .attr("height", h * 0.2)
-                       .attr("x", w/2)
-                       .attr("y", 60/2)
-                       .text("Hurricanes in America have become less frequent, including major ones (very, very slightly)")
-                       .attr("text-anchor", "middle")
-                       .attr("font-family", "sans-serif")
-                       .attr("font-size", "20")
-                       .attr("text-decoration", "underline");
-
-         //y axis label
-         svg.append("text")
-             .attr("transform", "rotate(-90)")
-             .attr("y", p.left/2)
-             .attr("x", -h/2)
-            //  .attr("dy", "1em")
-             .style("text-anchor", "middle")
-             .text("Number of Hurricanes")
-             .attr("font-family", "sans-serif");
-
-         //x axis label
-         svg.append("text")
-             .attr("y", h - p.bottom + 25)
-             .attr("x", w/2)
-            //  .attr("dy", "1em")
-             .style("text-anchor", "middle")
-             .text("<--- Every Year Between 1851 and 2016 --->")
-             .attr("font-family", "sans-serif");
-
-         //all hurricanes line snippet
-         svg.append("line")
-         .attr("class", "trendlineAllHurricanes")
-         .attr("x1", w/3 + 10)
-         .attr("y1", h/4.5 - 20)
-         .attr("x2", w/3 + 60)
-         .attr("y2", h/4.5 - 20)
-         .attr("stroke", "darkgreen")
-         .attr("stroke-width", 4)
-         .attr("stroke-dasharray", "12, 6");
-
-         //all hurricanes legend label
-         svg.append("text")
-             .attr("y", h/4.5 - 16)
-             .attr("x", w/3 + 70)
-             .text("hello")
-             .attr("font-family", "sans-serif");
-
-         svg.append("line")
-       			.attr("class", "trendlineMajorHurricanes")
-            .attr("x1", w/3 + 10)
-       			.attr("y1", h/4.5)
-       			.attr("x2", w/3 + 60)
-       			.attr("y2", h/4.5)
-            .attr("stroke", "#931319")
-            .attr("stroke-width", 4)
-            .attr("stroke-dasharray", "12, 6");
-
-        //major hurricanes legend label
-        svg.append("text")
-            .attr("y", h/4.5 + 7)
-            .attr("x", w/3 + 70)
-            .text("hello")
-            .attr("font-family", "sans-serif");
-
-        let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
-                       .data(dataset)
-                       .enter()
-                       .append("rect")
-                       .attr("x", d => xScale(d.year) + 1)
-                       .attr("y", d => yScale(allHurricanes(d)))
-                       .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
-                       .attr("width", xScale.bandwidth())
-                       .attr("fill", "#9fc49f");
-
-         let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
-         let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
-                        .data(dataset)
-                        .enter()
-                        .append("rect")
-                        .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
-                        .attr("y", d => yScale(majorHurricanes(d)))
-                        .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
-                        .attr("width", xScale.bandwidth()/2.5)
-                        .attr("fill", "pink");
+        // let colors = d3.scaleOrdinal(d3.schemeCategory10);
+        //
+        // let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
+        //                .data(dataset)
+        //                .enter()
+        //                .append("rect")
+        //                .attr("x", d => xScale(d.year) + 1)
+        //                .attr("y", d => yScale(allHurricanes(d)))
+        //                .attr("height", d => h - p.top - yScale(allHurricanes(d)))
+        //                .attr("width", xScale.bandwidth())
+        //                .attr("fill", "#9fc49f");
+        //
+        //  let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
+        //  let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
+        //                 .data(dataset)
+        //                 .enter()
+        //                 .append("rect")
+        //                 .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
+        //                 .attr("y", d => yScale(majorHurricanes(d)))
+        //                 .attr("height", d => h - p.top - yScale(majorHurricanes(d)))
+        //                 .attr("width", xScale.bandwidth()/2.5)
+        //                 .attr("fill", "pink");
 
         //Resources used to create best fit line were:
         //http://bl.ocks.org/benvandyke/8459843
         //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
 
     		let xSeries = d3.range(1851, 2017);
-    		let ySeriesAllHurricanes = dataset.map(d => allHurricanes(d));
-
-    		let LSAllHurricanes = leastSquares(xSeries, ySeriesAllHurricanes);
+    		// let ySeriesAllHurricanes = dataset.map(d => allHurricanes(d));
+        //
+    		// let LSAllHurricanes = leastSquares(xSeries, ySeriesAllHurricanes);
 
         //AH abbrev for All Hurricanes
     		let x1 = xSeries[0];
-    		let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
+    		// let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
     		let x2 = xSeries[xSeries.length - 1] + 1;
-    		let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
+    		// let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
         // console.log(`LSAllHurricanes`, LSAllHurricanes);
         // console.log(y2AH > y1AH);
         // console.log(y2AH, y1AH, x2, x1);
-        svg.append("line")
-      			.attr("class", "trendlineAllHurricanes")
-      			.attr("x1", xScale(x1))
-      			.attr("y1", yScale(y1AH))
-      			.attr("x2", xScale(x2))
-      			.attr("y2", yScale(y2AH))
-            .attr("stroke", "darkgreen")
-      			.attr("stroke-width", 4)
-            .attr("stroke-dasharray", "12, 4")
-            .append("title")
-            .text(`${LSAllHurricanes[0]}x + ${LSAllHurricanes[1]}`);
+        // svg.append("line")
+      	// 		.attr("class", "trendlineAllHurricanes")
+      	// 		.attr("x1", xScale(x1))
+      	// 		.attr("y1", yScale(y1AH))
+      	// 		.attr("x2", xScale(x2))
+      	// 		.attr("y2", yScale(y2AH))
+        //     .attr("stroke", "darkgreen")
+      	// 		.attr("stroke-width", 4)
+        //     .attr("stroke-dasharray", "12, 4")
+        //     .append("title")
+        //     .text(`${LSAllHurricanes[0]}x + ${LSAllHurricanes[1]}`);
 
         let ySeriesMajorHurricanes = dataset.map(d => d.cat3 + d.cat4 + d.cat5);
         let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
