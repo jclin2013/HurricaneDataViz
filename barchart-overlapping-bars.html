@@ -4,10 +4,22 @@
     <meta charset="utf-8">
     <title>Hurricane Data Visualization</title>
     <script src="./d3.js"></script>
-    <style media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+      html {
+        font-family: 'Lato', sans-serif;
+      }
+
       svg {
         border: 1px solid black;
       }
+
+      .grid line {
+        stroke: lightgrey;
+        stroke-opacity: 0.7;
+        shape-rendering: crispEdges;
+      }
+
     </style>
   </head>
   <body>
@@ -64,8 +76,8 @@
       });
 
       let loadDataVis = () => {
-        let w = 1000, h = 400;
-        let p = {bottom: 50, right: 35, top: 60, left: 70};
+        let w = 700, h = 400;
+        let p = {bottom: 50, right: 35, top: 85, left: 70};
 
         let svg = d3.select("body")
                     .append("svg")
@@ -108,6 +120,18 @@
                     .attr("transform", "translate(" + p.left + ", 0)")
                     .call(yAxis);
 
+        let makeHorizGridLines = d3.axisLeft(yScale)
+                                   .tickSize(-w + p.left + p.right)
+                                   .tickFormat("")
+                                   .tickValues(d3.range(8))
+                                  //  .tickSizeInner(0)
+                                   .tickSizeOuter(0);
+
+        let gridX = svg.append("g")
+                       .attr("class", "grid x")
+                       .attr("transform", "translate(" + p.left + ", 0)")
+                       .call(makeHorizGridLines);
+
         svg.selectAll(".tick")
             .filter(d => d === 0)
             .remove();
@@ -123,7 +147,7 @@
                        .attr("y", 60/2)
                        .text("Hurricanes in America have become less frequent, including major ones (very, very slightly)")
                        .attr("text-anchor", "middle")
-                       .attr("font-family", "sans-serif")
+                      //  .attr("font-family", "sans-serif")
                        .attr("font-size", "20")
                        .attr("text-decoration", "underline");
 
@@ -135,7 +159,7 @@
             //  .attr("dy", "1em")
              .style("text-anchor", "middle")
              .text("Number of Hurricanes")
-             .attr("font-family", "sans-serif");
+            //  .attr("font-family", "sans-serif");
 
          //x axis label
          svg.append("text")
@@ -144,42 +168,50 @@
             //  .attr("dy", "1em")
              .style("text-anchor", "middle")
              .text("All Years Between 1851 and 2016")
-             .attr("font-family", "sans-serif");
+            //  .attr("font-family", "sans-serif");
+
+        let legendTextY = h/5 - 15;
+        let legendLineY = h/5 - 20;
+        //  trendlines label
+         svg.append("text")
+             .attr("y", legendTextY)
+             .attr("x", w/3 - 100)
+             .text("TRENDLINES:")
+             .attr("font-weight", "900");
 
          //all hurricanes line snippet
          svg.append("line")
          .attr("class", "trendlineAllHurricanes")
          .attr("x1", w/3 + 10)
-         .attr("y1", h/4.5 - 20)
+         .attr("y1", legendLineY)
          .attr("x2", w/3 + 60)
-         .attr("y2", h/4.5 - 20)
+         .attr("y2", legendLineY)
          .attr("stroke", "darkgreen")
          .attr("stroke-width", 4)
          .attr("stroke-dasharray", "12, 6");
 
-         //all hurricanes legend label
+        //  all hurricanes legend label
          svg.append("text")
-             .attr("y", h/4.5 - 16)
-             .attr("x", w/3 + 70)
-             .text("Trendline for All Hurricanes")
-             .attr("font-family", "sans-serif");
+             .attr("y", legendTextY)
+             .attr("x", w/3 + 65)
+             .text("All Hurricanes")
 
+         //major hurricanes line snippet
          svg.append("line")
        			.attr("class", "trendlineMajorHurricanes")
-            .attr("x1", w/3 + 10)
-       			.attr("y1", h/4.5)
-       			.attr("x2", w/3 + 60)
-       			.attr("y2", h/4.5)
+            .attr("x1", w/3 + 180)
+       			.attr("y1", legendLineY)
+       			.attr("x2", w/3 + 230)
+       			.attr("y2", legendLineY)
             .attr("stroke", "#931319")
             .attr("stroke-width", 4)
             .attr("stroke-dasharray", "12, 6");
 
         //major hurricanes legend label
         svg.append("text")
-            .attr("y", h/4.5 + 7)
-            .attr("x", w/3 + 70)
-            .text("Trendline for Major Hurricanes")
-            .attr("font-family", "sans-serif");
+            .attr("y", legendTextY)
+            .attr("x", w/3 + 235)
+            .text("Major Hurricanes")
 
         let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
                        .data(dataset)
