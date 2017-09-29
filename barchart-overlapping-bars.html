@@ -23,6 +23,9 @@
     </style>
   </head>
   <body>
+    <svg id="mainSVG">
+    </svg>
+
     <script>
       let rowConverter = d => {
         return {
@@ -79,10 +82,15 @@
         let w = 700, h = 400;
         let p = {bottom: 50, right: 35, top: 85, left: 70};
 
-        let svg = d3.select("body")
-                    .append("svg")
+        let svg = d3.select("#mainSVG")
                     .attr("width", w)
                     .attr("height", h);
+
+        svg.append("image")
+           .attr("xlink:href", "hurricaneImage.jpg")
+           .attr("height", h)
+           .attr("width", w)
+           .attr("opacity", 0.25)
 
         let xScale = d3.scaleBand()
                        .domain(d3.range(1851, 2018))
