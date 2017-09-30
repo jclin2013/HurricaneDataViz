@@ -3,82 +3,17 @@
   <head>
     <meta charset="utf-8">
     <title>Hurricane Data Visualization</title>
-    <script src="./yearRangeBucketizer.js"></script>
     <script src="./d3.js"></script>
+    <script src="./yearRangeBucketizer.js"></script>
+    <script src="./reformat-data.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <style>
-      html {
-        font-family: 'Lato', sans-serif;
-      }
-
-      svg {
-        border: 1px solid black;
-      }
-
-      .grid line {
-        stroke: lightgrey;
-        stroke-opacity: 0.7;
-        shape-rendering: crispEdges;
-      }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <svg id="mainSVG">
     </svg>
 
     <script>
-      let rowConverter = d => {
-        return {
-          year: Number(d.Year),
-          category: Number(d["Highest Saffir-Simpson Category (U.S.)"])
-        };
-      };
-
-      let getYearsWithoutHurricanes = d => {
-        yearsWithoutHurricanes = [];
-        for(let i = 0; i < d.length - 1; i++) {
-          let currentYear = d[i].year;
-          let nextYear = d[i + 1].year;
-          if (nextYear - currentYear > 1) {
-            currentYear++;
-            while (currentYear < nextYear) {
-              yearsWithoutHurricanes.push({ year: currentYear });
-              currentYear++;
-            }
-          }
-        }
-        return yearsWithoutHurricanes;
-      }
-
-      let dataset;
-
-      d3.csv("data.csv", rowConverter, d => {
-        let yearsWithoutHurricanes = getYearsWithoutHurricanes(d);
-
-        d = d.concat(yearsWithoutHurricanes).sort((a, b) => a.year - b.year);
-
-        dataset = d3.nest()
-                    .key(d => d.year)
-                    .rollup(v => v.filter(obj => obj.category)
-                                  .map(obj => obj.category))
-                    .entries(d)
-                    .map(obj => {
-                      let result = {
-                        year: Number(obj.key),
-                        cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0
-                      }
-
-                      obj.value.forEach(category => {
-                        result["cat" + category] += 1;
-                      });
-
-                      return result;
-                    });
-
-        loadDataVis();
-      });
-
       let loadDataVis = () => {
         let w = 700, h = 400;
         let p = {bottom: 50, right: 35, top: 85, left: 70};
@@ -86,12 +21,6 @@
         let svg = d3.select("#mainSVG")
                     .attr("width", w)
                     .attr("height", h);
-
-        // svg.append("image")
-        //    .attr("xlink:href", "hurricaneImage.jpg")
-        //    .attr("height", h)
-        //    .attr("width", w)
-        //    .attr("opacity", 0.25)
 
         let xScale = d3.scaleBand()
                        .domain(d3.range(1851, 2018))

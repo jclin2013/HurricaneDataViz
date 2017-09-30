@@ -1,0 +1,13 @@
+html {
+  font-family: 'Lato', sans-serif;
+}
+
+svg {
+  border: 1px solid black;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
