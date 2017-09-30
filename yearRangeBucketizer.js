@@ -1,7 +1,7 @@
-// 1851-1862
-// 1863-1874
-// 1875-1887
-// 1, 6
+//Function below bucketizes the data for a given interval.
+//If the interval doesn't evenly divide the years,
+//the function will adjust the size of the last bucket.
+//(That is, it'll allow the last year range to be smaller.)
 
 let yearRangeBucketizer = (data, interval) => {
   let subArr = {cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};

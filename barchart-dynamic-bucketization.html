@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hurricane Data Visualization</title>
+    <script src="./yearRangeBucketizer.js"></script>
+    <script src="./d3.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <style>
+      html {
+        font-family: 'Lato', sans-serif;
+      }
+
+      svg {
+        border: 1px solid black;
+      }
+
+      .grid line {
+        stroke: lightgrey;
+        stroke-opacity: 0.7;
+        shape-rendering: crispEdges;
+      }
+
+    </style>
+  </head>
+  <body>
+    <svg id="mainSVG">
+    </svg>
+
+    <script>
+      let rowConverter = d => {
+        return {
+          year: Number(d.Year),
+          category: Number(d["Highest Saffir-Simpson Category (U.S.)"])
+        };
+      };
+
+      let getYearsWithoutHurricanes = d => {
+        yearsWithoutHurricanes = [];
+        for(let i = 0; i < d.length - 1; i++) {
+          let currentYear = d[i].year;
+          let nextYear = d[i + 1].year;
+          if (nextYear - currentYear > 1) {
+            currentYear++;
+            while (currentYear < nextYear) {
+              yearsWithoutHurricanes.push({ year: currentYear });
+              currentYear++;
+            }
+          }
+        }
+        return yearsWithoutHurricanes;
+      }
+
+      let dataset;
+
+      d3.csv("data.csv", rowConverter, d => {
+        let yearsWithoutHurricanes = getYearsWithoutHurricanes(d);
+
+        d = d.concat(yearsWithoutHurricanes).sort((a, b) => a.year - b.year);
+
+        dataset = d3.nest()
+                    .key(d => d.year)
+                    .rollup(v => v.filter(obj => obj.category)
+                                  .map(obj => obj.category))
+                    .entries(d)
+                    .map(obj => {
+                      let result = {
+                        year: Number(obj.key),
+                        cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0
+                      }
+
+                      obj.value.forEach(category => {
+                        result["cat" + category] += 1;
+                      });
+
+                      return result;
+                    });
+
+        loadDataVis();
+      });
+
+      let loadDataVis = () => {
+        let w = 700, h = 400;
+        let p = {bottom: 50, right: 35, top: 85, left: 70};
+
+        let svg = d3.select("#mainSVG")
+                    .attr("width", w)
+                    .attr("height", h);
+
+        // svg.append("image")
+        //    .attr("xlink:href", "hurricaneImage.jpg")
+        //    .attr("height", h)
+        //    .attr("width", w)
+        //    .attr("opacity", 0.25)
+
+        let xScale = d3.scaleBand()
+                       .domain(d3.range(1851, 2018))
+                       .range([p.left, w - p.right])
+                       .paddingInner(0.05);
+
+        let allHurricanes = d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5;
+
+        let yScale = d3.scaleLinear()
+                       .domain([
+                         d3.min(dataset, d => allHurricanes(d)),
+                         d3.max(dataset, d => allHurricanes(d))
+                       ])
+                       .range([h - p.bottom, p.top]);
+
+
+        let xAxis = d3.axisBottom(xScale)
+                      .tickValues([1851, 2016])//xScale.domain().filter((d,i) => !(i % 24))
+                      .tickSizeOuter(0);
+                      // .ticks(20)s
+                      // .tickValues([1851, 2017]);
+
+        let yAxis = d3.axisLeft(yScale)
+                      .tickSizeOuter(0)
+                      .tickValues([1, 2, 3, 4, 5, 6, 7])
+                      .tickFormat(d3.format("d"));
+
+        let gx = svg.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", "translate(0," + (h - p.bottom) + ")")
+                    .call(xAxis);
+
+        let gy = svg.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", "translate(" + p.left + ", 0)")
+                    .call(yAxis);
+
+        let makeHorizGridLines = d3.axisLeft(yScale)
+                                   .tickSize(-w + p.left + p.right)
+                                   .tickFormat("")
+                                   .tickValues(d3.range(8))
+                                  //  .tickSizeInner(0)
+                                   .tickSizeOuter(0);
+
+        let gridX = svg.append("g")
+                       .attr("class", "grid x")
+                       .attr("transform", "translate(" + p.left + ", 0)")
+                       .call(makeHorizGridLines);
+
+        svg.selectAll(".tick")
+            .filter(d => d === 0)
+            .remove();
+
+        svg.selectAll(".tick > text")
+            .style("font-size", "15");
+
+        let title = svg.append("text")
+                       .attr("class", "chartTitle")
+                       .attr("width", w)
+                       .attr("height", h * 0.2)
+                       .attr("x", w/2)
+                       .attr("y", 60/2)
+                       .text("Hurricanes in America have become less frequent")//, including major ones (very, very slightly)
+                       .attr("text-anchor", "middle")
+                      //  .attr("font-family", "sans-serif")
+                       .attr("font-size", "20")
+                       .attr("text-decoration", "underline");
+
+         //y axis label
+         svg.append("text")
+             .attr("transform", "rotate(-90)")
+             .attr("y", p.left/2)
+             .attr("x", -h/2)
+            //  .attr("dy", "1em")
+             .style("text-anchor", "middle")
+             .text("Number of Hurricanes")
+            //  .attr("font-family", "sans-serif");
+
+         //x axis label
+         svg.append("text")
+             .attr("y", h - p.bottom + 25)
+             .attr("x", w/2)
+            //  .attr("dy", "1em")
+             .style("text-anchor", "middle")
+             .text("All Years Between 1851 and 2016")
+            //  .attr("font-family", "sans-serif");
+
+        let legendTextY = h/5 - 15;
+        let legendLineY = h/5 - 20;
+        //  trendlines label
+         svg.append("text")
+             .attr("y", legendTextY)
+             .attr("x", w/3 - 100)
+             .text("TRENDLINES:")
+             .attr("font-weight", "900");
+
+         //all hurricanes line snippet
+         svg.append("line")
+         .attr("class", "trendlineAllHurricanes")
+         .attr("x1", w/3 + 10)
+         .attr("y1", legendLineY)
+         .attr("x2", w/3 + 60)
+         .attr("y2", legendLineY)
+         .attr("stroke", "darkgreen")
+         .attr("stroke-width", 4)
+         .attr("stroke-dasharray", "12, 6");
+
+        //  all hurricanes legend label
+         svg.append("text")
+             .attr("y", legendTextY)
+             .attr("x", w/3 + 65)
+             .text("All Hurricanes")
+
+         //major hurricanes line snippet
+         svg.append("line")
+       			.attr("class", "trendlineMajorHurricanes")
+            .attr("x1", w/3 + 180)
+       			.attr("y1", legendLineY)
+       			.attr("x2", w/3 + 230)
+       			.attr("y2", legendLineY)
+            .attr("stroke", "#931319")
+            .attr("stroke-width", 4)
+            .attr("stroke-dasharray", "12, 6");
+
+        //major hurricanes legend label
+        svg.append("text")
+            .attr("y", legendTextY)
+            .attr("x", w/3 + 235)
+            .text("Major Hurricanes")
+
+        let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
+                       .data(dataset)
+                       .enter()
+                       .append("rect")
+                       .attr("x", d => xScale(d.year) + 1)
+                       .attr("y", d => yScale(allHurricanes(d)))
+                       .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
+                       .attr("width", xScale.bandwidth())
+                       .attr("fill", "#9fc49f");
+
+         let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
+         let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
+                        .data(dataset)
+                        .enter()
+                        .append("rect")
+                        .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
+                        .attr("y", d => yScale(majorHurricanes(d)))
+                        .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
+                        .attr("width", xScale.bandwidth()/2.5)
+                        .attr("fill", "pink");
+
+        //Resources used to create best fit line were:
+        //http://bl.ocks.org/benvandyke/8459843
+        //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
+
+    		let xSeries = d3.range(1851, 2017);
+    		let ySeriesAllHurricanes = dataset.map(d => allHurricanes(d));
+
+    		let LSAllHurricanes = leastSquares(xSeries, ySeriesAllHurricanes);
+
+        //AH abbrev for All Hurricanes
+    		let x1 = xSeries[0];
+    		let y1AH = LSAllHurricanes[0] * x1 + LSAllHurricanes[1];
+    		let x2 = xSeries[xSeries.length - 1] + 1;
+    		let y2AH = LSAllHurricanes[0] * x2 + LSAllHurricanes[1];
+        // console.log(`LSAllHurricanes`, LSAllHurricanes);
+        // console.log(y2AH > y1AH);
+        // console.log(y2AH, y1AH, x2, x1);
+        svg.append("line")
+      			.attr("class", "trendlineAllHurricanes")
+      			.attr("x1", xScale(x1))
+      			.attr("y1", yScale(y1AH))
+      			.attr("x2", xScale(x2))
+      			.attr("y2", yScale(y2AH))
+            .attr("stroke", "darkgreen")
+      			.attr("stroke-width", 4)
+            .attr("stroke-dasharray", "12, 4")
+            .append("title")
+            .text(`${LSAllHurricanes[0]}x + ${LSAllHurricanes[1]}`);
+
+        let ySeriesMajorHurricanes = dataset.map(d => d.cat3 + d.cat4 + d.cat5);
+        let LSMajorHurricanes = leastSquares(xSeries, ySeriesMajorHurricanes);
+
+        // MH abbrev for Major Hurricanes
+    		let y1MH = LSMajorHurricanes[0] * x1 + LSMajorHurricanes[1];
+    		let y2MH = LSMajorHurricanes[0] * x2 + LSMajorHurricanes[1];
+        // console.log(`LSMajorHurricanes`, LSMajorHurricanes);
+        // console.log(y2MH > y1MH);
+        //
+        svg.append("line")
+      			.attr("class", "trendlineMajorHurricanes")
+            .attr("x1", xScale(x1))
+      			.attr("y1", yScale(y1MH))
+      			.attr("x2", xScale(x2))
+      			.attr("y2", yScale(y2MH))
+            .attr("stroke", "#931319")
+            .attr("stroke-width", 4)
+            .attr("stroke-dasharray", "12, 6")
+            .append("title")
+            .text(`${LSMajorHurricanes[0]}x + ${LSMajorHurricanes[1]}`);
+
+        function leastSquares(xSeries, ySeries) {
+          let sumFunc = (a, b) => a + b;
+        	let xBar = xSeries.reduce(sumFunc) / xSeries.length;
+        	let yBar = ySeries.reduce(sumFunc) / ySeries.length;
+
+        	let ssXX = xSeries.map(x => Math.pow(x - xBar, 2))
+        		                .reduce(sumFunc);
+
+        	let ssXY = xSeries.map((x, i) => (x - xBar) * (ySeries[i] - yBar))
+        		                .reduce(sumFunc);
+
+        	let slope = ssXY / ssXX;
+        	let intercept = yBar - (xBar * slope);
+
+        	return [slope, intercept];
+        }
+      }
+    </script>
+  </body>
+</html>
