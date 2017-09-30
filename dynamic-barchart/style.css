@@ -11,3 +11,9 @@ svg {
   stroke-opacity: 0.7;
   shape-rendering: crispEdges;
 }
+
+#intervalInput {
+  width: 30px;
+  outline: none;
+  text-align: center;
+}

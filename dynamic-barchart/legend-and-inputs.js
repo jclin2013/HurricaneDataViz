@@ -1,7 +1,7 @@
-let createLegend = (svg, w, h) => {
+let createLegend = (svg, w, h, p) => {
 
-  let legendTextY = h/5 - 10;
-  let legendLineY = h/5 - 15;
+  let legendTextY = h/5 - 30;
+  let legendLineY = legendTextY - 5;
   //  trendlines label
   svg.append("text")
      .attr("y", legendTextY)
@@ -43,15 +43,32 @@ let createLegend = (svg, w, h) => {
     .attr("x", w/3 + 235)
     .text("Major Hurricanes")
 
-    svg.append("text")
-       .attr("class", "yearRangeIntervalLabel")
-       .attr
+  svg.append("text")
+     .attr("class", "yearRangeIntervalLabel")
+     .attr("y", h - 25)
+     .attr("x", p.left)
+     .attr("text-anchor", "start")
+     .text("Year Range Interval:")
 
+  //
+  // svg.append("foreignObject")
+  //   .attr('x', w/3 + 300)
+  //   .attr('y',  35)
+  //   .attr('width', "50px")
+  //   .attr('height', "20px")
+  //   .append("xhtml:body")
+  //   .html("<input type=checkbox id=check></input>");
+  //
   svg.append("foreignObject")
-    .attr('x', w/3 + 300)
-    .attr('y',  35)
+    .attr('x', p.left + 140)
+    .attr('y',  h - 50)
     .attr('width', "50px")
     .attr('height', "20px")
     .append("xhtml:body")
-    .html("<input type=checkbox id=check></input>");
+    .html("<input value=1 type=number min=1 id=intervalInput></input>");
+
+    // function myFunction() {
+    //   var x = document.getElementById("myNumber").value;
+    //   document.getElementById("demo").innerHTML = x;
+    // }
 }
