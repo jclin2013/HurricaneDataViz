@@ -5,22 +5,23 @@
     <title>Hurricane Data Visualization</title>
     <script src="./d3.js"></script>
     <script src="./yearRangeBucketizer.js"></script>
-    <script src="./reformat-data.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <svg id="mainSVG">
     </svg>
-
+    <script src="./legend-and-inputs.js"></script>
     <script>
       let loadDataVis = () => {
-        let w = 700, h = 400;
-        let p = {bottom: 50, right: 35, top: 85, left: 70};
+        let w = 700, h = 450;
+        let p = {bottom: 50, right: 35, top: 100, left: 70};
 
         let svg = d3.select("#mainSVG")
                     .attr("width", w)
                     .attr("height", h);
+
+        createLegend(svg, w, h);
 
         let xScale = d3.scaleBand()
                        .domain(d3.range(1851, 2018))
@@ -108,48 +109,7 @@
              .text("All Years Between 1851 and 2016")
             //  .attr("font-family", "sans-serif");
 
-        let legendTextY = h/5 - 15;
-        let legendLineY = h/5 - 20;
-        //  trendlines label
-         svg.append("text")
-             .attr("y", legendTextY)
-             .attr("x", w/3 - 100)
-             .text("TRENDLINES:")
-             .attr("font-weight", "900");
 
-         //all hurricanes line snippet
-         svg.append("line")
-         .attr("class", "trendlineAllHurricanes")
-         .attr("x1", w/3 + 10)
-         .attr("y1", legendLineY)
-         .attr("x2", w/3 + 60)
-         .attr("y2", legendLineY)
-         .attr("stroke", "darkgreen")
-         .attr("stroke-width", 4)
-         .attr("stroke-dasharray", "12, 6");
-
-        //  all hurricanes legend label
-         svg.append("text")
-             .attr("y", legendTextY)
-             .attr("x", w/3 + 65)
-             .text("All Hurricanes")
-
-         //major hurricanes line snippet
-         svg.append("line")
-       			.attr("class", "trendlineMajorHurricanes")
-            .attr("x1", w/3 + 180)
-       			.attr("y1", legendLineY)
-       			.attr("x2", w/3 + 230)
-       			.attr("y2", legendLineY)
-            .attr("stroke", "#931319")
-            .attr("stroke-width", 4)
-            .attr("stroke-dasharray", "12, 6");
-
-        //major hurricanes legend label
-        svg.append("text")
-            .attr("y", legendTextY)
-            .attr("x", w/3 + 235)
-            .text("Major Hurricanes")
 
         let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
                        .data(dataset)
@@ -240,5 +200,7 @@
         }
       }
     </script>
+
+    <script src="./reformat-data.js"></script>
   </body>
 </html>
