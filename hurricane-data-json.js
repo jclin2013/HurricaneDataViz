@@ -1337,35 +1337,6 @@ var data = [
   // }
 ];
 
-// 1851-1862
-// 1863-1874
-// 1875-1887
-// 1, 6
-
-let subresult = {cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
-let result = [];
-let count = 0;
-data.forEach(obj => {
-  count++;
-
-  subresult.cat1 += obj.cat1;
-  subresult.cat2 += obj.cat2;
-  subresult.cat3 += obj.cat3;
-  subresult.cat4 += obj.cat4;
-  subresult.cat5 += obj.cat5;
-
-  if (count % 5 === 0) {
-    subresult.year = (obj.year - 4) + "-" + obj.year;
-    result.push(subresult);
-    subresult = {cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
-  }
-
-  if (obj.year === 2016) {
-    subresult.year = String(2016);
-    result.push(subresult);
-  }
-})
-
 var badlyBucketizedData = [
   {
     "cat1": 8,

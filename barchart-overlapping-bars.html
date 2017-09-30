@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Hurricane Data Visualization</title>
+    <script src="./yearRangeBucketizer.js"></script>
     <script src="./d3.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <style>
@@ -86,11 +87,11 @@
                     .attr("width", w)
                     .attr("height", h);
 
-        svg.append("image")
-           .attr("xlink:href", "hurricaneImage.jpg")
-           .attr("height", h)
-           .attr("width", w)
-           .attr("opacity", 0.25)
+        // svg.append("image")
+        //    .attr("xlink:href", "hurricaneImage.jpg")
+        //    .attr("height", h)
+        //    .attr("width", w)
+        //    .attr("opacity", 0.25)
 
         let xScale = d3.scaleBand()
                        .domain(d3.range(1851, 2018))
