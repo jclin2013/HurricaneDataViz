@@ -40,13 +40,13 @@
       let yScale = d3.scaleLinear()
                      .domain([
                        d3.min(dataset, d => allHurricanes(d)),
-                       d3.max(dataset, d => allHurricanes(d))
+                       d3.max(dataset, d => allHurricanes(d)) + 1
                      ])
                      .range([h - p.bottom, p.top]);
 
 
       let xAxis = d3.axisBottom(xScale)
-                    .tickValues(xScale.domain().filter((d,i) => !(i % 15)))
+                    // .tickValues(xScale.domain().filter((d,i) => !(i % 15)))
                     // .tickValues([1851, 2016])//xScale.domain().filter((d,i) => !(i % 24))
                     .tickSizeOuter(0);
                     // .ticks(20)s
@@ -54,7 +54,7 @@
 
       let yAxis = d3.axisLeft(yScale)
                     .tickSizeOuter(0)
-                    .tickValues([1, 2, 3, 4, 5, 6, 7])
+                    .ticks(6)
                     .tickFormat(d3.format("d"));
 
       let gx = svg.append("g")
@@ -145,7 +145,17 @@
             dataset = yearRangeBucketizer(originalDataset, interval);
             console.log(dataset);
             xScale.domain(dataset.map(obj => obj.year));
-            gx.transition().duration(500).call(xAxis.scale(xScale).tickValues(xScale.domain().filter((d,i) => !(i % 15))));
+            gx.transition().duration(500).call(xAxis.scale(xScale));//.tickValues(xScale.domain().filter((d,i) => !(i % 15))
+
+            yScale.domain([
+              0,
+              d3.max(dataset, d => allHurricanes(d)) + 1
+            ]);
+
+            gy.transition().duration(500).call(
+              yAxis.scale(yScale)
+                   .ticks(6)
+            );
         }
 
         // d3.select("#check")
