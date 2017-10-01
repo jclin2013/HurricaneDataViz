@@ -14,17 +14,17 @@ svg {
   shape-rendering: crispEdges;
 }
 
-#yearRangeInputContainer {
+#yearRangeInputContainer, #include2017CheckboxContainer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 210px;
+  width: 270px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  padding: 5px;
 }
 
 #include2017CheckboxContainer {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   width: 290px;
 }
 

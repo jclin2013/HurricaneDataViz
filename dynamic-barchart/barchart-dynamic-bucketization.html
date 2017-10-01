@@ -5,18 +5,24 @@
     <title>Hurricane Data Visualization</title>
     <script src="https://use.fontawesome.com/edb8528b4a.js"></script>
     <script src="./dataset.js"></script>
-    <script src="./d3.js"></script>
     <script src="./yearRangeBucketizer.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="./d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script>
+      _u = _.noConflict(); // lets call ourselves _u
+    </script>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <svg id="mainSVG">
     </svg>
+
     <script src="./legend-and-inputs.js"></script>
     <script>
+      let originalDataset = _u.merge([], dataset);
       let w = 700, h = 450;
-      let p = {bottom: 90, right: 35, top: 80, left: 70};
+      let p = {bottom: 75, right: 35, top: 80, left: 70};
 
       let svg = d3.select("#mainSVG")
                   .attr("width", w)
@@ -85,9 +91,8 @@
                      .attr("height", h * 0.2)
                      .attr("x", w/2)
                      .attr("y", 60/2)
-                     .text("Hurricanes in America have become less frequent")//, including major ones (very, very slightly)
+                     .text("Number of Hurricanes Striking America Over Time")
                      .attr("text-anchor", "middle")
-                    //  .attr("font-family", "sans-serif")
                      .attr("font-size", "20")
                      .attr("text-decoration", "underline");
 
@@ -110,10 +115,8 @@
           //  .text("All Years Between 1851 and 2016")
           //  .attr("font-family", "sans-serif");
 
-
-
       let barsAllHurricanes = svg.selectAll("rect.allcatsbar")
-                     .data(dataset)
+                     .data(dataset, d => d.key)
                      .enter()
                      .append("rect")
                      .attr("x", d => xScale(d.year) + 1)
@@ -124,7 +127,7 @@
 
        let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
        let barsMajorHurricanes = svg.selectAll("rect.majorcatsbar")
-                      .data(dataset)
+                      .data(dataset, d => d.key)
                       .enter()
                       .append("rect")
                       .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
@@ -132,6 +135,22 @@
                       .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
                       .attr("width", xScale.bandwidth()/2.5)
                       .attr("fill", "pink");
+
+        d3.select("#submitIntervalButton")
+          .on("click", clickHandler);
+
+        function clickHandler() {
+            let interval = document.querySelector("#intervalInput").value;
+            dataset = yearRangeBucketizer(originalDataset, interval);
+
+        }
+
+        // d3.select("#check")
+        //   .on("change", checkHandler);
+        //
+        // function checkHandler() {
+        //     console.log(document.querySelector("#check").checked);
+        // }
     </script>
   </body>
 </html>

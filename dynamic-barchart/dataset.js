@@ -5,7 +5,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1851-interval1"
   },
   {
     "year": 1852,
@@ -13,7 +14,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1852-interval1"
   },
   {
     "year": 1853,
@@ -21,7 +23,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1853-interval1"
   },
   {
     "year": 1854,
@@ -29,7 +32,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1854-interval1"
   },
   {
     "year": 1855,
@@ -37,7 +41,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1855-interval1"
   },
   {
     "year": 1856,
@@ -45,7 +50,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1856-interval1"
   },
   {
     "year": 1857,
@@ -53,7 +59,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1857-interval1"
   },
   {
     "year": 1858,
@@ -61,7 +68,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1858-interval1"
   },
   {
     "year": 1859,
@@ -69,7 +77,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1859-interval1"
   },
   {
     "year": 1860,
@@ -77,7 +86,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1860-interval1"
   },
   {
     "year": 1861,
@@ -85,7 +95,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1861-interval1"
   },
   {
     "year": 1862,
@@ -93,7 +104,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1862-interval1"
   },
   {
     "year": 1863,
@@ -101,7 +113,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1863-interval1"
   },
   {
     "year": 1864,
@@ -109,7 +122,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1864-interval1"
   },
   {
     "year": 1865,
@@ -117,7 +131,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1865-interval1"
   },
   {
     "year": 1866,
@@ -125,7 +140,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1866-interval1"
   },
   {
     "year": 1867,
@@ -133,7 +149,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1867-interval1"
   },
   {
     "year": 1868,
@@ -141,7 +158,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1868-interval1"
   },
   {
     "year": 1869,
@@ -149,7 +167,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1869-interval1"
   },
   {
     "year": 1870,
@@ -157,7 +176,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1870-interval1"
   },
   {
     "year": 1871,
@@ -165,7 +185,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1871-interval1"
   },
   {
     "year": 1872,
@@ -173,7 +194,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1872-interval1"
   },
   {
     "year": 1873,
@@ -181,7 +203,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1873-interval1"
   },
   {
     "year": 1874,
@@ -189,7 +212,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1874-interval1"
   },
   {
     "year": 1875,
@@ -197,7 +221,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1875-interval1"
   },
   {
     "year": 1876,
@@ -205,7 +230,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1876-interval1"
   },
   {
     "year": 1877,
@@ -213,7 +239,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1877-interval1"
   },
   {
     "year": 1878,
@@ -221,7 +248,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1878-interval1"
   },
   {
     "year": 1879,
@@ -229,7 +257,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1879-interval1"
   },
   {
     "year": 1880,
@@ -237,7 +266,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1880-interval1"
   },
   {
     "year": 1881,
@@ -245,7 +275,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1881-interval1"
   },
   {
     "year": 1882,
@@ -253,7 +284,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1882-interval1"
   },
   {
     "year": 1883,
@@ -261,7 +293,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1883-interval1"
   },
   {
     "year": 1884,
@@ -269,7 +302,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1884-interval1"
   },
   {
     "year": 1885,
@@ -277,7 +311,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1885-interval1"
   },
   {
     "year": 1886,
@@ -285,7 +320,8 @@ var dataset = [
     "cat2": 3,
     "cat3": 1,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1886-interval1"
   },
   {
     "year": 1887,
@@ -293,7 +329,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1887-interval1"
   },
   {
     "year": 1888,
@@ -301,7 +338,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1888-interval1"
   },
   {
     "year": 1889,
@@ -309,7 +347,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1889-interval1"
   },
   {
     "year": 1890,
@@ -317,7 +356,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1890-interval1"
   },
   {
     "year": 1891,
@@ -325,7 +365,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1891-interval1"
   },
   {
     "year": 1892,
@@ -333,7 +374,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1892-interval1"
   },
   {
     "year": 1893,
@@ -341,7 +383,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 2,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1893-interval1"
   },
   {
     "year": 1894,
@@ -349,7 +392,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1894-interval1"
   },
   {
     "year": 1895,
@@ -357,7 +401,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1895-interval1"
   },
   {
     "year": 1896,
@@ -365,7 +410,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1896-interval1"
   },
   {
     "year": 1897,
@@ -373,7 +419,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1897-interval1"
   },
   {
     "year": 1898,
@@ -381,7 +428,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1898-interval1"
   },
   {
     "year": 1899,
@@ -389,7 +437,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1899-interval1"
   },
   {
     "year": 1900,
@@ -397,7 +446,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1900-interval1"
   },
   {
     "year": 1901,
@@ -405,7 +455,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1901-interval1"
   },
   {
     "year": 1902,
@@ -413,7 +464,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1902-interval1"
   },
   {
     "year": 1903,
@@ -421,7 +473,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1903-interval1"
   },
   {
     "year": 1904,
@@ -429,7 +482,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1904-interval1"
   },
   {
     "year": 1905,
@@ -437,7 +491,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1905-interval1"
   },
   {
     "year": 1906,
@@ -445,7 +500,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1906-interval1"
   },
   {
     "year": 1907,
@@ -453,7 +509,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1907-interval1"
   },
   {
     "year": 1908,
@@ -461,7 +518,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1908-interval1"
   },
   {
     "year": 1909,
@@ -469,7 +527,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 3,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1909-interval1"
   },
   {
     "year": 1910,
@@ -477,7 +536,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1910-interval1"
   },
   {
     "year": 1911,
@@ -485,7 +545,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1911-interval1"
   },
   {
     "year": 1912,
@@ -493,7 +554,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1912-interval1"
   },
   {
     "year": 1913,
@@ -501,7 +563,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1913-interval1"
   },
   {
     "year": 1914,
@@ -509,7 +572,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1914-interval1"
   },
   {
     "year": 1915,
@@ -517,7 +581,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 2,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1915-interval1"
   },
   {
     "year": 1916,
@@ -525,7 +590,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1916-interval1"
   },
   {
     "year": 1917,
@@ -533,7 +599,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1917-interval1"
   },
   {
     "year": 1918,
@@ -541,7 +608,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1918-interval1"
   },
   {
     "year": 1919,
@@ -549,7 +617,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1919-interval1"
   },
   {
     "year": 1920,
@@ -557,7 +626,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1920-interval1"
   },
   {
     "year": 1921,
@@ -565,7 +635,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1921-interval1"
   },
   {
     "year": 1922,
@@ -573,7 +644,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1922-interval1"
   },
   {
     "year": 1923,
@@ -581,7 +653,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1923-interval1"
   },
   {
     "year": 1924,
@@ -589,7 +662,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1924-interval1"
   },
   {
     "year": 1925,
@@ -597,7 +671,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1925-interval1"
   },
   {
     "year": 1926,
@@ -605,7 +680,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1926-interval1"
   },
   {
     "year": 1927,
@@ -613,7 +689,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1927-interval1"
   },
   {
     "year": 1928,
@@ -621,7 +698,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1928-interval1"
   },
   {
     "year": 1929,
@@ -629,7 +707,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1929-interval1"
   },
   {
     "year": 1930,
@@ -637,7 +716,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1930-interval1"
   },
   {
     "year": 1931,
@@ -645,7 +725,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1931-interval1"
   },
   {
     "year": 1932,
@@ -653,7 +734,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1932-interval1"
   },
   {
     "year": 1933,
@@ -661,7 +743,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 3,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1933-interval1"
   },
   {
     "year": 1934,
@@ -669,7 +752,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1934-interval1"
   },
   {
     "year": 1935,
@@ -677,7 +761,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 1
+    "cat5": 1,
+    "key": "1935-interval1"
   },
   {
     "year": 1936,
@@ -685,7 +770,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1936-interval1"
   },
   {
     "year": 1937,
@@ -693,7 +779,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1937-interval1"
   },
   {
     "year": 1938,
@@ -701,7 +788,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1938-interval1"
   },
   {
     "year": 1939,
@@ -709,7 +797,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1939-interval1"
   },
   {
     "year": 1940,
@@ -717,7 +806,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1940-interval1"
   },
   {
     "year": 1941,
@@ -725,7 +815,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1941-interval1"
   },
   {
     "year": 1942,
@@ -733,7 +824,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1942-interval1"
   },
   {
     "year": 1943,
@@ -741,7 +833,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1943-interval1"
   },
   {
     "year": 1944,
@@ -749,7 +842,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1944-interval1"
   },
   {
     "year": 1945,
@@ -757,7 +851,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1945-interval1"
   },
   {
     "year": 1946,
@@ -765,7 +860,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1946-interval1"
   },
   {
     "year": 1947,
@@ -773,7 +869,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1947-interval1"
   },
   {
     "year": 1948,
@@ -781,7 +878,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1948-interval1"
   },
   {
     "year": 1949,
@@ -789,7 +887,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1949-interval1"
   },
   {
     "year": 1950,
@@ -797,7 +896,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1950-interval1"
   },
   {
     "year": 1951,
@@ -805,7 +905,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1951-interval1"
   },
   {
     "year": 1952,
@@ -813,7 +914,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1952-interval1"
   },
   {
     "year": 1953,
@@ -821,7 +923,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1953-interval1"
   },
   {
     "year": 1954,
@@ -829,7 +932,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 2,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1954-interval1"
   },
   {
     "year": 1955,
@@ -837,7 +941,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1955-interval1"
   },
   {
     "year": 1956,
@@ -845,7 +950,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1956-interval1"
   },
   {
     "year": 1957,
@@ -853,7 +959,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1957-interval1"
   },
   {
     "year": 1958,
@@ -861,7 +968,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1958-interval1"
   },
   {
     "year": 1959,
@@ -869,7 +977,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1959-interval1"
   },
   {
     "year": 1960,
@@ -877,7 +986,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1960-interval1"
   },
   {
     "year": 1961,
@@ -885,7 +995,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1961-interval1"
   },
   {
     "year": 1962,
@@ -893,7 +1004,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1962-interval1"
   },
   {
     "year": 1963,
@@ -901,7 +1013,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1963-interval1"
   },
   {
     "year": 1964,
@@ -909,7 +1022,8 @@ var dataset = [
     "cat2": 3,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1964-interval1"
   },
   {
     "year": 1965,
@@ -917,7 +1031,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1965-interval1"
   },
   {
     "year": 1966,
@@ -925,7 +1040,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1966-interval1"
   },
   {
     "year": 1967,
@@ -933,7 +1049,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1967-interval1"
   },
   {
     "year": 1968,
@@ -941,7 +1058,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1968-interval1"
   },
   {
     "year": 1969,
@@ -949,7 +1067,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 1
+    "cat5": 1,
+    "key": "1969-interval1"
   },
   {
     "year": 1970,
@@ -957,7 +1076,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1970-interval1"
   },
   {
     "year": 1971,
@@ -965,7 +1085,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1971-interval1"
   },
   {
     "year": 1972,
@@ -973,7 +1094,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1972-interval1"
   },
   {
     "year": 1973,
@@ -981,7 +1103,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1973-interval1"
   },
   {
     "year": 1974,
@@ -989,7 +1112,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1974-interval1"
   },
   {
     "year": 1975,
@@ -997,7 +1121,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1975-interval1"
   },
   {
     "year": 1976,
@@ -1005,7 +1130,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1976-interval1"
   },
   {
     "year": 1977,
@@ -1013,7 +1139,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1977-interval1"
   },
   {
     "year": 1978,
@@ -1021,7 +1148,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1978-interval1"
   },
   {
     "year": 1979,
@@ -1029,7 +1157,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1979-interval1"
   },
   {
     "year": 1980,
@@ -1037,7 +1166,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1980-interval1"
   },
   {
     "year": 1981,
@@ -1045,7 +1175,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1981-interval1"
   },
   {
     "year": 1982,
@@ -1053,7 +1184,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1982-interval1"
   },
   {
     "year": 1983,
@@ -1061,7 +1193,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1983-interval1"
   },
   {
     "year": 1984,
@@ -1069,7 +1202,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1984-interval1"
   },
   {
     "year": 1985,
@@ -1077,7 +1211,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 2,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1985-interval1"
   },
   {
     "year": 1986,
@@ -1085,7 +1220,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1986-interval1"
   },
   {
     "year": 1987,
@@ -1093,7 +1229,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1987-interval1"
   },
   {
     "year": 1988,
@@ -1101,7 +1238,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1988-interval1"
   },
   {
     "year": 1989,
@@ -1109,7 +1247,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1989-interval1"
   },
   {
     "year": 1990,
@@ -1117,7 +1256,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1990-interval1"
   },
   {
     "year": 1991,
@@ -1125,7 +1265,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1991-interval1"
   },
   {
     "year": 1992,
@@ -1133,7 +1274,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 1
+    "cat5": 1,
+    "key": "1992-interval1"
   },
   {
     "year": 1993,
@@ -1141,7 +1283,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1993-interval1"
   },
   {
     "year": 1994,
@@ -1149,7 +1292,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1994-interval1"
   },
   {
     "year": 1995,
@@ -1157,7 +1301,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1995-interval1"
   },
   {
     "year": 1996,
@@ -1165,7 +1310,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1996-interval1"
   },
   {
     "year": 1997,
@@ -1173,7 +1319,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1997-interval1"
   },
   {
     "year": 1998,
@@ -1181,7 +1328,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1998-interval1"
   },
   {
     "year": 1999,
@@ -1189,7 +1337,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 1,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "1999-interval1"
   },
   {
     "year": 2000,
@@ -1197,7 +1346,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2000-interval1"
   },
   {
     "year": 2001,
@@ -1205,7 +1355,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2001-interval1"
   },
   {
     "year": 2002,
@@ -1213,7 +1364,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2002-interval1"
   },
   {
     "year": 2003,
@@ -1221,7 +1373,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2003-interval1"
   },
   {
     "year": 2004,
@@ -1229,7 +1382,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 2,
     "cat4": 1,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2004-interval1"
   },
   {
     "year": 2005,
@@ -1237,7 +1391,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 4,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2005-interval1"
   },
   {
     "year": 2006,
@@ -1245,7 +1400,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2006-interval1"
   },
   {
     "year": 2007,
@@ -1253,7 +1409,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2007-interval1"
   },
   {
     "year": 2008,
@@ -1261,7 +1418,8 @@ var dataset = [
     "cat2": 2,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2008-interval1"
   },
   {
     "year": 2009,
@@ -1269,7 +1427,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2009-interval1"
   },
   {
     "year": 2010,
@@ -1277,7 +1436,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2010-interval1"
   },
   {
     "year": 2011,
@@ -1285,7 +1445,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2011-interval1"
   },
   {
     "year": 2012,
@@ -1293,7 +1454,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2012-interval1"
   },
   {
     "year": 2013,
@@ -1301,7 +1463,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2013-interval1"
   },
   {
     "year": 2014,
@@ -1309,7 +1472,8 @@ var dataset = [
     "cat2": 1,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2014-interval1"
   },
   {
     "year": 2015,
@@ -1317,7 +1481,8 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2015-interval1"
   },
   {
     "year": 2016,
@@ -1325,6 +1490,7 @@ var dataset = [
     "cat2": 0,
     "cat3": 0,
     "cat4": 0,
-    "cat5": 0
+    "cat5": 0,
+    "key": "2016-interval1"
   }
-];
+]
