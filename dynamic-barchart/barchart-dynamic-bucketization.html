@@ -31,7 +31,7 @@
       createLegend(svg, w, h, p);
 
       let xScale = d3.scaleBand()
-                     .domain(d3.range(1851, 2018))
+                     .domain(d3.range(1851, 2017))
                      .range([p.left, w - p.right])
                      .paddingInner(0.05);
 
@@ -46,7 +46,8 @@
 
 
       let xAxis = d3.axisBottom(xScale)
-                    .tickValues([1851, 2016])//xScale.domain().filter((d,i) => !(i % 24))
+                    .tickValues(xScale.domain().filter((d,i) => !(i % 15)))
+                    // .tickValues([1851, 2016])//xScale.domain().filter((d,i) => !(i % 24))
                     .tickSizeOuter(0);
                     // .ticks(20)s
                     // .tickValues([1851, 2017]);
@@ -82,8 +83,8 @@
           .filter(d => d === 0)
           .remove();
 
-      svg.selectAll(".tick > text")
-          .style("font-size", "15");
+      // svg.selectAll(".tick > text")
+      //     .style("font-size", "15");
 
       let title = svg.append("text")
                      .attr("class", "chartTitle")
@@ -140,9 +141,11 @@
           .on("click", clickHandler);
 
         function clickHandler() {
-            let interval = document.querySelector("#intervalInput").value;
+            let interval = +document.querySelector("#intervalInput").value;
             dataset = yearRangeBucketizer(originalDataset, interval);
-
+            console.log(dataset);
+            xScale.domain(dataset.map(obj => obj.year));
+            gx.transition().duration(500).call(xAxis.scale(xScale).tickValues(xScale.domain().filter((d,i) => !(i % 15))));
         }
 
         // d3.select("#check")

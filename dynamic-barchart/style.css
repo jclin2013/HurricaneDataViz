@@ -39,6 +39,10 @@ svg {
   text-align: center;
 }
 
-.belowXAxisLabel {
+/*.belowXAxisLabel {
   font-size: 14px;
+}*/
+
+.tick > text {
+  font-size: 15px;
 }
