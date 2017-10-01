@@ -43,29 +43,52 @@ let createLegend = (svg, w, h, p) => {
     .attr("x", w/3 + 235)
     .text("Major Hurricanes")
 
-  svg.append("text")
-     .attr("class", "yearRangeIntervalLabel")
-     .attr("y", h - 25)
-     .attr("x", p.left)
-     .attr("text-anchor", "start")
-     .text("Year Range Interval:")
+  let xOffset = p.left;
 
-  //
-  // svg.append("foreignObject")
-  //   .attr('x', w/3 + 300)
-  //   .attr('y',  35)
-  //   .attr('width', "50px")
-  //   .attr('height', "20px")
-  //   .append("xhtml:body")
-  //   .html("<input type=checkbox id=check></input>");
-  //
+  // svg.append("text")
+  //    .attr("class", "belowXAxisLabel yearRangeInterval")
+  //    .attr("y", h - 25)
+  //    .attr("x", xOffset)
+  //    .attr("text-anchor", "start")
+  //    .text("Year Range Interval:")
+
+   svg.append("foreignObject")
+     .attr('x', xOffset)
+     .attr('y',  h - 50)
+     .attr('width', "250px")
+     .attr('height', "20px")
+     .append("xhtml:body")
+     .html(`
+       <div id="yearRangeInputContainer">
+         <div>Year Range Interval:</div>
+         <input value=1 type=number min=1 id=intervalInput></input>
+         <i class="fa fa-info-circle" aria-hidden="true"></i>
+       </div>
+      `);
+
+  // svg.append("text")
+  //    .attr("class", "belowXAxisLabel include2017")
+  //    .attr("y", h - 25)
+  //    .attr("x", xOffset + 190)
+  //    .attr("text-anchor", "start")
+  //    .text("Include Available Data from 2017?")
+
   svg.append("foreignObject")
-    .attr('x', p.left + 140)
+    .attr('x', xOffset + 230)
     .attr('y',  h - 50)
     .attr('width', "50px")
     .attr('height', "20px")
     .append("xhtml:body")
-    .html("<input value=1 type=number min=1 id=intervalInput></input>");
+    .html(`
+      <div id="include2017CheckboxContainer">
+        <div>Include Available Data from 2017?</div>
+        <input type=checkbox id=check></input>
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+      </div>
+     `);
+    // .html("<input type=checkbox id=check></input>");
+
+
 
     // function myFunction() {
     //   var x = document.getElementById("myNumber").value;

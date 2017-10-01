@@ -12,8 +12,31 @@ svg {
   shape-rendering: crispEdges;
 }
 
+#yearRangeInputContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 210px;
+}
+
+#include2017CheckboxContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 290px;
+}
+
+#include2017CheckboxContainer #check {
+  position: relative;
+  top: 3px;
+}
+
 #intervalInput {
   width: 30px;
   outline: none;
   text-align: center;
+}
+
+.belowXAxisLabel {
+  font-size: 14px;
 }

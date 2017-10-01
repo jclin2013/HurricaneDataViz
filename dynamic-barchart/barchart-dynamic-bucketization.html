@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Hurricane Data Visualization</title>
+    <script src="https://use.fontawesome.com/edb8528b4a.js"></script>
     <script src="./d3.js"></script>
     <script src="./yearRangeBucketizer.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -15,7 +16,7 @@
     <script>
       let loadDataVis = () => {
         let w = 700, h = 450;
-        let p = {bottom: 80, right: 35, top: 80, left: 70};
+        let p = {bottom: 90, right: 35, top: 80, left: 70};
 
         let svg = d3.select("#mainSVG")
                     .attr("width", w)
