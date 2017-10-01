@@ -11,14 +11,14 @@ let createLegend = (svg, w, h, p) => {
 
   //all hurricanes line snippet
   svg.append("line")
-  .attr("class", "trendlineAllHurricanes")
-  .attr("x1", w/3 + 10)
-  .attr("y1", legendLineY)
-  .attr("x2", w/3 + 60)
-  .attr("y2", legendLineY)
-  .attr("stroke", "darkgreen")
-  .attr("stroke-width", 4)
-  .attr("stroke-dasharray", "12, 6");
+    .attr("class", "trendlineAllHurricanes")
+    .attr("x1", w/3 + 10)
+    .attr("y1", legendLineY)
+    .attr("x2", w/3 + 60)
+    .attr("y2", legendLineY)
+    .attr("stroke", "darkgreen")
+    .attr("stroke-width", 4)
+    .attr("stroke-dasharray", "12, 6");
 
   //  all hurricanes legend label
   svg.append("text")
@@ -45,13 +45,6 @@ let createLegend = (svg, w, h, p) => {
 
   let xOffset = p.left;
 
-  // svg.append("text")
-  //    .attr("class", "belowXAxisLabel yearRangeInterval")
-  //    .attr("y", h - 25)
-  //    .attr("x", xOffset)
-  //    .attr("text-anchor", "start")
-  //    .text("Year Range Interval:")
-
    svg.append("foreignObject")
      .attr('x', xOffset)
      .attr('y',  h - 50)
@@ -66,13 +59,6 @@ let createLegend = (svg, w, h, p) => {
        </div>
       `);
 
-  // svg.append("text")
-  //    .attr("class", "belowXAxisLabel include2017")
-  //    .attr("y", h - 25)
-  //    .attr("x", xOffset + 190)
-  //    .attr("text-anchor", "start")
-  //    .text("Include Available Data from 2017?")
-
   svg.append("foreignObject")
     .attr('x', xOffset + 230)
     .attr('y',  h - 50)
@@ -86,12 +72,4 @@ let createLegend = (svg, w, h, p) => {
         <i class="fa fa-info-circle" aria-hidden="true"></i>
       </div>
      `);
-    // .html("<input type=checkbox id=check></input>");
-
-
-
-    // function myFunction() {
-    //   var x = document.getElementById("myNumber").value;
-    //   document.getElementById("demo").innerHTML = x;
-    // }
 }
