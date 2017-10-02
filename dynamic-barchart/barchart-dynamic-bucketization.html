@@ -22,6 +22,13 @@
   </head>
   <body>
     <svg id="mainSVG">
+      <filter id="contrast">
+        <feComponentTransfer>
+          <feFuncR type="linear" slope="0.5" intercept="0"></feFuncR>
+          <feFuncG type="linear" slope="0.5" intercept="0.25"></feFuncG>
+          <feFuncB type="linear" slope="0.5" intercept="0.5"></feFuncB>
+        </feComponentTransfer>
+      </filter>
     </svg>
     <script>
       let originalDataset = _u.merge([], dataset);
@@ -113,11 +120,23 @@
            .style("text-anchor", "middle")
            .text("Number of Hurricanes")
 
+      let barTooltip = g => {
+         g.on("mouseover", function() {
+             d3.select(this).attr("fill", "black")
+                            // .attr("stroke-width", "0.5");
+           })
+          .on("mouseout", function() {
+             d3.select(this).attr("fill", "")
+                            // .attr("stroke-width", "");
+           });
+       };
+
       let barGroups = svg.selectAll("g.barGroups")
                          .data(dataset, d => d.key)
                          .enter()
                          .append("g")
-                         .attr("class", "barGroups");
+                         .attr("class", "barGroups")
+                         .call(barTooltip);
 
       barGroups.append("rect")
                .attr("class", "bar allcatbars")
@@ -179,9 +198,6 @@
             xScale.domain(dataset.map(obj => obj.year))
                   .paddingInner(0.05);
 
-            console.log(xScale.domain());
-            console.log(tickValuesForXAxis(xScale.domain()));
-
             gx.transition().duration(500).call(
               xAxis.scale(xScale)
                    .tickSizeInner(10)
@@ -211,7 +227,8 @@
 
             let enterGroups = groupsNewBind.enter()
                                            .append("g")
-                                           .attr("class", "barGroups");
+                                           .attr("class", "barGroups")
+                                           .call(barTooltip);
 
             enterGroups.append("rect")
                        .attr("class", "bar allcatbars")

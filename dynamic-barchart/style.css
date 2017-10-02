@@ -39,8 +39,8 @@ svg {
   text-align: center;
 }
 
-.majorcatbars:hover {
-  fill: red;
+.barGroups:hover {
+  filter: url("#contrast");
 }
 
 /*rect {
