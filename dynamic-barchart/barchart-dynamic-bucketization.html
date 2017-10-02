@@ -49,14 +49,18 @@
                      ])
                      .range([h - p.bottom, p.top]);
 
-      let fiveTicksForXAxis = domain => {
+      let tickValuesForXAxis = domain => {
         return domain.filter((v, i) => {
-          return !(i % (Math.floor(domain.length/5)))
+          // console.log(i, Math.floor(domain.length/5));
+          // if (i === 0 || i === domain.length - 1) return true;
+
+          return !(i % (Math.ceil(domain.length/7.5)))
         });
       };
 
       let xAxis = d3.axisBottom(xScale)
-                    .tickValues(fiveTicksForXAxis(xScale.domain()))
+                    // .ticks(5)
+                    .tickValues(tickValuesForXAxis(xScale.domain()))
                     .tickSizeInner(10)
                     .tickSizeOuter(0);
 
@@ -175,10 +179,13 @@
             xScale.domain(dataset.map(obj => obj.year))
                   .paddingInner(0.05);
 
+            console.log(xScale.domain());
+            console.log(tickValuesForXAxis(xScale.domain()));
+
             gx.transition().duration(500).call(
               xAxis.scale(xScale)
                    .tickSizeInner(10)
-                   .tickValues(fiveTicksForXAxis(xScale.domain()))
+                   .tickValues(tickValuesForXAxis(xScale.domain()))
             );
 
             //update the yAxis
