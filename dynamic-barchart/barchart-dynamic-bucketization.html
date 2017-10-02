@@ -10,7 +10,7 @@
     <script src="./d3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script>
-      _u = _.noConflict(); // lets call ourselves _u
+      _u = _.noConflict();
     </script>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
@@ -44,10 +44,17 @@
                      ])
                      .range([h - p.bottom, p.top]);
 
+      let fiveTicksForXAxis = domain => {
+        return domain.filter((v, i) => {
+          return !(i % (Math.floor(domain.length/5)))
+        });
+      };
 
       let xAxis = d3.axisBottom(xScale)
-                    // .tickValues(xScale.domain().filter((d,i) => !(i % 15)))
+                    .tickValues(fiveTicksForXAxis(xScale.domain()))
                     // .tickValues([1851, 2016])//xScale.domain().filter((d,i) => !(i % 24))
+                    // .ticks(5)
+                    .tickSizeInner(10)
                     .tickSizeOuter(0);
                     // .ticks(20)s
                     // .tickValues([1851, 2017]);
@@ -59,7 +66,7 @@
 
       let gx = svg.append("g")
                   .attr("class", "x axis")
-                  .attr("transform", "translate(0," + (h - p.bottom) + ")")
+                  .attr("transform", "translate(0.5," + (h - p.bottom) + ")")
                   .call(xAxis);
 
       let gy = svg.append("g")
@@ -137,6 +144,9 @@
                       .attr("width", xScale.bandwidth()/2.5)
                       .attr("fill", "pink");
 
+        document.querySelector("#intervalInput")
+                .onkeypress = e => { if (e.key === "Enter") clickHandler(); };
+
         d3.select("#submitIntervalButton")
           .on("click", clickHandler);
 
@@ -145,7 +155,11 @@
             dataset = yearRangeBucketizer(originalDataset, interval);
             console.log(dataset);
             xScale.domain(dataset.map(obj => obj.year));
-            gx.transition().duration(500).call(xAxis.scale(xScale));//.tickValues(xScale.domain().filter((d,i) => !(i % 15))
+            gx.transition().duration(500).call(
+              xAxis.scale(xScale)
+                   .tickSizeInner(10)
+                   .tickValues(fiveTicksForXAxis(xScale.domain()))
+            );
 
             yScale.domain([
               0,
