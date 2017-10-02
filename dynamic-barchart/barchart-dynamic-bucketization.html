@@ -77,7 +77,8 @@
       let makeHorizGridLines = d3.axisLeft(yScale)
                                  .tickSize(-w + p.left + p.right)
                                  .tickFormat("")
-                                 .tickValues(d3.range(8))
+                                 .ticks(6)
+                                //  .tickValues(d3.range(d3.max(dataset, d => allHurricanes(d)) + 2))
                                 //  .tickSizeInner(0)
                                  .tickSizeOuter(0);
 
@@ -170,6 +171,13 @@
               yAxis.scale(yScale)
                    .ticks(6)
             );
+
+            makeHorizGridLines.scale(yScale)
+                              .ticks(6);
+
+            gridX.transition().duration(500).call(makeHorizGridLines);
+
+
         }
 
         // d3.select("#check")
