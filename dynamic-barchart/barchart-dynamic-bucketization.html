@@ -25,8 +25,8 @@
     </svg>
     <script>
       let originalDataset = _u.merge([], dataset);
-      let w = 700, h = 450;
-      let p = {bottom: 75, right: 35, top: 80, left: 70};
+      let w = 750, h = 450;
+      let p = {bottom: 75, right: 50, top: 80, left: 70};
 
       let svg = d3.select("#mainSVG")
                   .attr("width", w)
@@ -106,42 +106,36 @@
            .attr("transform", "rotate(-90)")
            .attr("y", p.left/2)
            .attr("x", -h/2)
-          //  .attr("dy", "1em")
            .style("text-anchor", "middle")
            .text("Number of Hurricanes")
-          //  .attr("font-family", "sans-serif");
 
-       //x axis label
-      //  svg.append("text")
-      //      .attr("y", h - p.bottom + 25)
-      //      .attr("x", w/2)
-          //  .attr("dy", "1em")
-          //  .style("text-anchor", "middle")
-          //  .text("All Years Between 1851 and 2016")
-          //  .attr("font-family", "sans-serif");
+      let barGroups = svg.selectAll("g.barGroups")
+                         .data(dataset, d => d.key)
+                         .enter()
+                         .append("g")
+                         .attr("class", "barGroups");
 
-      let barsAllHurricanes = svg.selectAll("rect.allcatbars")
-                     .data(dataset, d => d.key)
-                     .enter()
-                     .append("rect")
-                     .attr("class", "allcatbars")
-                     .attr("x", d => xScale(d.year) + 1)
-                     .attr("y", d => yScale(allHurricanes(d)))
-                     .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
-                     .attr("width", xScale.bandwidth())
-                     .attr("fill", "#9fc49f");
+      barGroups.append("rect")
+               .attr("class", "bar allcatbars")
+               .attr("x", d => xScale(d.year) + 1)
+               .attr("y", d => yScale(allHurricanes(d)))
+               .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
+               .attr("width", xScale.bandwidth())
+               .attr("fill", "#9fc49f");
 
        let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
-       let barsMajorHurricanes = svg.selectAll("rect.majorcatbars")
-                      .data(dataset, d => d.key)
-                      .enter()
-                      .append("rect")
-                      .attr("class", "majorcatbars")
-                      .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
-                      .attr("y", d => yScale(majorHurricanes(d)))
-                      .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
-                      .attr("width", xScale.bandwidth()/2.5)
-                      .attr("fill", "pink");
+
+       let middleOfBigBar = d => (
+         xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1
+       );
+
+       barGroups.append("rect")
+                .attr("class", "bar majorcatbars")
+                .attr("x", middleOfBigBar)
+                .attr("y", d => yScale(majorHurricanes(d)))
+                .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
+                .attr("width", xScale.bandwidth()/2.5)
+                .attr("fill", "pink");
 
         document.querySelector("#intervalInput")
                 .onkeypress = e => { if (e.key === "Enter") changeHandler(); };
@@ -205,55 +199,46 @@
             gridX.transition().duration(500).call(makeHorizGridLines);
 
             //update the bars
-            let allHurricaneBars = svg.selectAll(".allcatbars")
-                                      .data(dataset, d => d.key);
+            let groupsNewBind = svg.selectAll(".barGroups")
+                                   .data(dataset, d => d.key);
 
-            allHurricaneBars.enter()
-                            .append("rect")
-                            .attr("class", "allcatbars")
-                            .attr("x", d => xScale(d.year) + 1)
-                            .attr("y", h - p.bottom)
-                            .attr("height", 0)
-                            .attr("width", xScale.bandwidth())
-                            .attr("fill", "#9fc49f")
-                            .merge(allHurricaneBars)
-                            .transition()
-                            .duration(500)
-                            .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
-                            .attr("y", d => yScale(allHurricanes(d)))
-                            .attr("x", d => xScale(d.year) + 1);
+            let enterGroups = groupsNewBind.enter()
+                                           .append("g")
+                                           .attr("class", "barGroups");
 
-            allHurricaneBars.exit()
-                            .transition()
-                            .duration(500)
-                            .attr("y", h - p.bottom)
-                            .attr("height", 0)
-                            .remove();
+            enterGroups.append("rect")
+                       .attr("class", "bar allcatbars")
+                       .attr("x", d => xScale(d.year) + 1)
+                       .attr("y", h - p.bottom)
+                       .attr("height", 0)
+                       .attr("width", xScale.bandwidth())
+                       .attr("fill", "#9fc49f");
 
-            let majorHurricaneBars = svg.selectAll(".majorcatbars")
-                                        .data(dataset, d => d.key);
+            enterGroups.append("rect")
+                       .attr("class", "bar majorcatbars")
+                       .attr("x", middleOfBigBar)
+                       .attr("y", h - p.bottom)
+                       .attr("height", 0)
+                       .attr("width", xScale.bandwidth()/2.5)
+                       .attr("fill", "pink");
 
-            majorHurricaneBars.enter()
-                              .append("rect")
-                              .attr("class", "majorcatbars")
-                              .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1)
-                              .attr("y", h - p.bottom)
-                              .attr("height", 0)
-                              .attr("width", xScale.bandwidth()/2.5)
-                              .attr("fill", "pink")
-                              .merge(majorHurricaneBars)
-                              .transition()
-                              .duration(500)
-                              .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
-                              .attr("y", d => yScale(majorHurricanes(d)))
-                              .attr("x", d => xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1);
+            let updateSelection = enterGroups.merge(groupsNewBind);
 
-           majorHurricaneBars.exit()
-                             .transition()
-                             .duration(500)
-                             .attr("y", h - p.bottom)
-                             .attr("height", 0)
-                             .remove();
+            updateSelection.selectAll(".allcatbars")
+                           .transition()
+                           .duration(500)
+                           .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
+                           .attr("y", d => yScale(allHurricanes(d)))
+                           .attr("x", d => xScale(d.year) + 1);
+
+           updateSelection.selectAll(".majorcatbars")
+                          .transition()
+                          .duration(500)
+                          .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
+                          .attr("y", d => yScale(majorHurricanes(d)))
+                          .attr("x", middleOfBigBar);
+
+            groupsNewBind.exit().remove();
         }
     </script>
   </body>
