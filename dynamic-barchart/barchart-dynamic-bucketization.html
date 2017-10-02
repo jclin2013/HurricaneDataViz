@@ -52,12 +52,8 @@
 
       let xAxis = d3.axisBottom(xScale)
                     .tickValues(fiveTicksForXAxis(xScale.domain()))
-                    // .tickValues([1851, 2016])//xScale.domain().filter((d,i) => !(i % 24))
-                    // .ticks(5)
                     .tickSizeInner(10)
                     .tickSizeOuter(0);
-                    // .ticks(20)s
-                    // .tickValues([1851, 2017]);
 
       let yAxis = d3.axisLeft(yScale)
                     .tickSizeOuter(0)
@@ -78,8 +74,6 @@
                                  .tickSize(-w + p.left + p.right)
                                  .tickFormat("")
                                  .ticks(6)
-                                //  .tickValues(d3.range(d3.max(dataset, d => allHurricanes(d)) + 2))
-                                //  .tickSizeInner(0)
                                  .tickSizeOuter(0);
 
       let gridX = svg.append("g")
@@ -90,9 +84,6 @@
       svg.selectAll(".tick")
           .filter(d => d === 0)
           .remove();
-
-      // svg.selectAll(".tick > text")
-      //     .style("font-size", "15");
 
       let title = svg.append("text")
                      .attr("class", "chartTitle")
