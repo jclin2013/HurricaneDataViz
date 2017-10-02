@@ -2,23 +2,27 @@
 <html>
   <head>
     <meta charset="utf-8">
+
     <title>Hurricane Data Visualization</title>
+
     <script src="https://use.fontawesome.com/edb8528b4a.js"></script>
-    <script src="./dataset.js"></script>
-    <script src="./yearRangeBucketizer.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <script src="./d3.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
     <script>
       _u = _.noConflict();
     </script>
+    <script src="./d3.js"></script>
+
+    <script src="./dataset.js"></script>
+    <script src="./yearRangeBucketizer.js"></script>
+    <script src="./createTrendlinesLegend.js"></script>
+    <script src="./createInputs.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <svg id="mainSVG">
     </svg>
-
-    <script src="./legend-and-inputs.js"></script>
     <script>
       let originalDataset = _u.merge([], dataset);
       let w = 700, h = 450;
@@ -28,7 +32,8 @@
                   .attr("width", w)
                   .attr("height", h);
 
-      createLegend(svg, w, h, p);
+      createTrendlinesLegend(svg, w, h, p);
+      createInputs(svg, h, p);
 
       let xScale = d3.scaleBand()
                      .domain(d3.range(1851, 2017))
