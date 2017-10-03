@@ -168,6 +168,11 @@
         function changeHandler(isCheckboxChecked) {
             let interval = +document.querySelector("#intervalInput").value;
 
+            if (interval > 83) {
+              interval = 83;
+              document.querySelector("#intervalInput").value = 83;
+            }
+
             if (typeof isCheckboxChecked !== "undefined") {
               let lastObj = originalDataset[originalDataset.length - 1];
 
