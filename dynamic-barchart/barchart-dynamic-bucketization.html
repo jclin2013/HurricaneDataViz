@@ -156,8 +156,13 @@
         d3.select("#submitIntervalButton")
           .on("click", changeHandler);
 
+        let checked = true;
         d3.select("#check")
-          .on("change", function() { changeHandler(this.checked) } );
+          .on("click", function() {
+            checked ? this.innerHTML = ('✔') : this.innerHTML = '';
+            changeHandler(checked);
+            checked = !checked;
+          });
 
         function changeHandler(isCheckboxChecked) {
             let interval = +document.querySelector("#intervalInput").value;

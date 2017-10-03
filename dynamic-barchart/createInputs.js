@@ -4,7 +4,7 @@ let createInputs = (svg, h, p) => {
    svg.append("foreignObject")
      .attr('x', xOffset - 10)
      .attr('y',  h - 50)
-     .attr('width', "240px")
+     .attr('width', "240px" )
      .attr('height', "20px")
      .append("xhtml:body")
      .html(`
@@ -25,7 +25,7 @@ let createInputs = (svg, h, p) => {
     .html(`
       <div id="include2017CheckboxContainer">
         <div>Include Available Data from 2017?</div>
-        <input type=checkbox id=check></input>
+        <div id="check"></div>
         <i class="fa fa-info-circle" aria-hidden="true"></i>
       </div>
      `);
