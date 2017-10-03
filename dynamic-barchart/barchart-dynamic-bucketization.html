@@ -45,6 +45,7 @@
                      .paddingInner(0.05);
 
       let allHurricanes = d => d.cat1 + d.cat2 + d.cat3 + d.cat4 + d.cat5;
+      let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
 
       let yScale = d3.scaleLinear()
                      .domain([
@@ -116,11 +117,11 @@
                          .data(dataset, d => d.key)
                          .enter()
                          .append("g")
-                         .attr("class", "barGroups")
-                        //  .call(barTooltip);
+                         .attr("class", "barGroups");
 
+      let tooltip = d => `${d.year}:\nMajor Hurricanes: ${majorHurricanes(d)}\nAll Hurricanes: ${allHurricanes(d)}`;
       barGroups.append("title")
-               .text(d => d.year);
+               .text(tooltip);
 
       barGroups.append("rect")
                .attr("class", "bar allcatbars")
@@ -129,8 +130,6 @@
                .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
                .attr("width", xScale.bandwidth())
                .attr("fill", "#9fc49f");
-
-       let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
 
        let middleOfBigBar = (d, i) => (
          xScale(i) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1
@@ -247,7 +246,7 @@
             let updateSelection = enterGroups.merge(groupsNewBind)
 
             updateSelection.append("title")
-                           .text(d => d.year);
+                           .text(tooltip);
 
             updateSelection.select(".allcatbars")
                            .transition()
