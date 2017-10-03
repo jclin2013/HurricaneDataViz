@@ -11,43 +11,48 @@ let lineProperties = {
   ]
 };
 
-let slopeFormat = (m, b) => {
+let createSlopeTexts = (dataset, lineType) => {
+  let [sumFunc] = lineProperties[lineType];
+
+  let xSeries = d3.range(dataset.length),
+      ySeries = dataset.map(sumFunc);
+
+  let [m, b] = leastSquares(xSeries, ySeries);
+
   m = parseFloat(m.toPrecision(3)).toExponential();
   b = b.toPrecision(3);
-  return [m, b];
+
+  if (lineType === "allHurricanes") {
+    allHurricanesLineSlope = `${m}x + ${b}`;
+  } else {
+    majorHurricanesLineSlope = `${m}x + ${b}`;
+  }
 };
 
 let createTrendline = (dataset, lineType) => {
   let [sumFunc, className, color] = lineProperties[lineType];
+  createSlopeTexts(dataset, lineType);
 
-  let xSeries = d3.range(1851, 2017),
-      ySeries = dataset.map(sumFunc);
+  let xSeries = dataset.map((obj, i) => xScale(i)),
+      ySeries = dataset.map(obj => yScale(sumFunc(obj)));
 
   let [slope, intercept] = leastSquares(xSeries, ySeries);
 
   let x1 = xSeries[0],
       y1 = slope * x1 + intercept,
-      x2 = xSeries[xSeries.length - 1] + 1,
+      x2 = xSeries[xSeries.length - 1] + 4.5,
       y2 = slope * x2 + intercept;
-
-  [slope, intercept] = slopeFormat(slope, intercept);
-
-  if (lineType === "allHurricanes") {
-    allHurricanesLineSlope = `${slope}x + ${intercept}`;
-  } else {
-    majorHurricanesLineSlope = `${slope}x + ${intercept}`;
-  }
 
   let line = d3.select("#trendlineContainer")
                 .append("line")
                 .attr("class", `trendline ${className}`)
-                .attr("x1", xScale(x1))
-                .attr("y1", yScale(y1))
-                .attr("x2", xScale(x2))
-                .attr("y2", yScale(y2))
+                .attr("x1", x1)
+                .attr("y1", y1)
+                .attr("x2", x2)
+                .attr("y2", y2)
                 .attr("stroke", color)
                 .attr("stroke-width", 4)
-                .attr("stroke-dasharray", "12, 3");
+                .attr("stroke-dasharray", "12, 1.5");
 
   line.append("title")
       .text(`${slope}x + ${intercept}`);
