@@ -1,6 +1,4 @@
 updateTrendline = (dataset, sumFunc, line) => {
-  // let [sumFunc, className, color] = lineProperties[lineType];
-
   let xSeries = dataset.map(obj => xScale(obj.year)),
       ySeries = dataset.map(obj => yScale(sumFunc(obj)));
 
@@ -21,7 +19,7 @@ updateTrendline = (dataset, sumFunc, line) => {
              .transition()
              .duration(250)
              .attr("opacity", "1")
-             .text(`slope: ${slope}x + ${intercept}`);
+             .text(`equation: ${slope}x + ${intercept}`);
   };
 
   if (line.attr("class").includes("allHurricanes")) {

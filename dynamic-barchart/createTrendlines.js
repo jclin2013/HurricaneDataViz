@@ -11,10 +11,10 @@ let lineProperties = {
   ]
 };
 
-let createSlopeTexts = (dataset, lineType) => {
+let createSlopeTexts = (dataset, lineType, line) => {
   let [sumFunc] = lineProperties[lineType];
 
-  let xSeries = d3.range(dataset.length),
+  let xSeries = d3.range(1851, 2017),
       ySeries = dataset.map(sumFunc);
 
   let [m, b] = leastSquares(xSeries, ySeries);
@@ -22,16 +22,18 @@ let createSlopeTexts = (dataset, lineType) => {
   m = parseFloat(m.toPrecision(3)).toExponential();
   b = b.toPrecision(3);
 
+  line.append("title")
+      .text(`${m}x + ${b}`);
+
   if (lineType === "allHurricanes") {
-    allHurricanesLineSlope = `${m}x + ${b}`;
+    allHurricanesLineSlope = `equation: ${m}x + ${b}`;
   } else {
-    majorHurricanesLineSlope = `${m}x + ${b}`;
+    majorHurricanesLineSlope = `equation: ${m}x + ${b}`;
   }
 };
 
 let createTrendline = (dataset, lineType) => {
   let [sumFunc, className, color] = lineProperties[lineType];
-  createSlopeTexts(dataset, lineType);
 
   let xSeries = dataset.map((obj, i) => xScale(i)),
       ySeries = dataset.map(obj => yScale(sumFunc(obj)));
@@ -54,8 +56,7 @@ let createTrendline = (dataset, lineType) => {
                 .attr("stroke-width", 4)
                 .attr("stroke-dasharray", "12, 1.5");
 
-  line.append("title")
-      .text(`${slope}x + ${intercept}`);
+  createSlopeTexts(dataset, lineType, line);
 
   return line;
 };

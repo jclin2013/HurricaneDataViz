@@ -195,13 +195,14 @@
             console.log(dataset);
 
             //update the xAxis
-            xScale.domain(dataset.map(obj => obj.year))
+            xScale.domain(d3.range(dataset.length))
                   .paddingInner(0.05);
 
             gx.transition().duration(500).call(
               xAxis.scale(xScale)
-                   .tickSizeInner(10)
+                  //  .tickSizeInner(10)
                    .tickValues(tickValuesForXAxis(xScale.domain()))
+                   .tickFormat(i => dataset[i].year)
             );
 
             //update the yAxis
@@ -229,11 +230,11 @@
             let enterGroups = groupsNewBind.enter()
                                            .append("g")
                                            .attr("class", "barGroups")
-                                           .call(barTooltip);
+                                          //  .call(barTooltip);
 
             enterGroups.append("rect")
                        .attr("class", "bar allcatbars")
-                       .attr("x", d => xScale(d.year) + 1)
+                       .attr("x", (d, i, t) => xScale(i) + 1)
                        .attr("y", h - p.bottom)
                        .attr("height", 0)
                        .attr("width", xScale.bandwidth())
@@ -247,16 +248,16 @@
                        .attr("width", xScale.bandwidth()/2.5)
                        .attr("fill", "pink");
 
-            let updateSelection = enterGroups.merge(groupsNewBind);
+            let updateSelection = enterGroups.merge(groupsNewBind)
 
-            updateSelection.selectAll(".allcatbars")
+            updateSelection.select(".allcatbars")
                            .transition()
                            .duration(500)
-                           .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
+                           .attr("x", (d, i) => xScale(i) + 1)
                            .attr("y", d => yScale(allHurricanes(d)))
-                           .attr("x", d => xScale(d.year) + 1);
+                           .attr("height", d => h - p.bottom - yScale(allHurricanes(d)));
 
-           updateSelection.selectAll(".majorcatbars")
+           updateSelection.select(".majorcatbars")
                           .transition()
                           .duration(500)
                           .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
@@ -269,8 +270,8 @@
             updateTrendline(dataset, majorHurricanes, lineMajorHurricanes);
         }
     </script>
-    <script src="./createTrendlines.js"></script>
+    <!-- <script src="./createTrendlines.js"></script>
     <script src="./createTrendlinesLegend.js"></script>
-    <script src="./updateTrendline.js"></script>
+    <script src="./updateTrendline.js"></script> -->
   </body>
 </html>
