@@ -38,7 +38,7 @@ let yearRangeBucketizer = (data, interval) => {
         label = (obj.year - (count % interval) + 1) + "-" + obj.year;
       }
 
-      currentObj.year = label;
+      currentObj.year = label + " (remainder interval)";
       currentObj.key = label + "-interval" + interval;
 
       result.lastBucketIsUneven = true;
