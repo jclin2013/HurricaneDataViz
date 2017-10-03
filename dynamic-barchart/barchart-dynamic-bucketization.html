@@ -16,6 +16,7 @@
     <script src="./yearRangeBucketizer.js"></script>
     <script src="./createTrendlinesLegend.js"></script>
     <script src="./createInputs.js"></script>
+    <script src="./barTooltip.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -30,14 +31,14 @@
         </feComponentTransfer>
       </filter>
     </svg>
+
     <script>
       let originalDataset = _u.merge([], dataset);
       let w = 750, h = 450;
       let p = {bottom: 75, right: 50, top: 80, left: 70};
 
       let svg = d3.select("#mainSVG")
-                  .attr("width", w)
-                  .attr("height", h);
+                  .attr("viewBox", `0 0 ${w + " " + h}`);
 
       createTrendlinesLegend(svg, w, h, p);
       createInputs(svg, h, p);
@@ -119,17 +120,6 @@
            .attr("x", -h/2)
            .style("text-anchor", "middle")
            .text("Number of Hurricanes")
-
-      let barTooltip = g => {
-         g.on("mouseover", function() {
-             d3.select(this).attr("fill", "black")
-                            // .attr("stroke-width", "0.5");
-           })
-          .on("mouseout", function() {
-             d3.select(this).attr("fill", "")
-                            // .attr("stroke-width", "");
-           });
-       };
 
       let barGroups = svg.selectAll("g.barGroups")
                          .data(dataset, d => d.key)
