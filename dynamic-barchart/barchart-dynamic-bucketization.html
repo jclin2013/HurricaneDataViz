@@ -268,8 +268,8 @@
             if (dataset.lastBucketIsUneven) {
               screenedData.pop();
 
-              document.querySelector(".barGroups:last-child")
-                      .style.filter = `url("#contrast")`;
+              document.querySelectorAll(".barGroups:last-child .bar")
+                      .forEach(el => el.setAttribute("opacity", "0.4"));
             }
 
             lineAllHurricanes = updateTrendline(screenedData, allHurricanes, lineAllHurricanes);
