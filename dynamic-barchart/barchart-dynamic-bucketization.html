@@ -44,7 +44,7 @@
       createInputs(svg, h, p);
 
       let xScale = d3.scaleBand()
-                     .domain(d3.range(1851, 2017))
+                     .domain(d3.range(1851, 2018))
                      .range([p.left, w - p.right])
                      .paddingInner(0.05);
 
@@ -259,6 +259,8 @@
 
             groupsNewBind.exit().remove();
         }
+
     </script>
+    <script src="./createTrendlines.js"></script>
   </body>
 </html>
