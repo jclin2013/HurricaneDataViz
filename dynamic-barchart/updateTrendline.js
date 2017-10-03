@@ -31,7 +31,7 @@ updateTrendline = (dataset, sumFunc, line) => {
 
   let x1 = xSeries[0],
       y1 = slope * x1 + intercept,
-      x2 = xSeries[xSeries.length - 1] + 4.5,
+      x2 = xSeries[xSeries.length - 1] + xScale.bandwidth(),
       y2 = slope * x2 + intercept;
 
   line.transition()
