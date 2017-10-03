@@ -13,15 +13,29 @@ updateTrendline = (dataset, sumFunc, line) => {
 
   [slope, intercept] = slopeFormat(slope, intercept);
 
+  let slopeTextTransition = slopeText => {
+    slopeText.attr("opacity", "1")
+             .transition()
+             .duration(250)
+             .attr("opacity", "0")
+             .transition()
+             .duration(250)
+             .attr("opacity", "1")
+             .text(`slope: ${slope}x + ${intercept}`);
+  };
+
   if (line.attr("class").includes("allHurricanes")) {
     d3.select(".allHurricanesLineSlope")
-      .text(`slope: ${slope}x + ${intercept}`);
+      .call(slopeTextTransition);
   } else {
     d3.select(".majorHurricanesLineSlope")
-      .text(`slope: ${slope}x + ${intercept}`);
+      .text(`slope: ${slope}x + ${intercept}`)
+      .call(slopeTextTransition);
   }
 
-  line.attr("x1", x1)
+  line.transition()
+      .duration(500)
+      .attr("x1", x1)
       .attr("y1", y1)
       .attr("x2", x2)
       .attr("y2", y2)
