@@ -11,13 +11,13 @@ let createTrendlinesLegend = (svg, w, h, p) => {
   //all hurricanes line snippet
   svg.append("line")
       .attr("class", "trendlineAllHurricanes")
-      .attr("x1", w/3 + 12)
+      .attr("x1", w/3 + 17)
       .attr("y1", legendLineY - 7)
-      .attr("x2", w/3 + 60)
+      .attr("x2", w/3 + 55)
       .attr("y2", legendLineY - 7)
       .attr("stroke", "darkgreen")
       .attr("stroke-width", 4)
-      .attr("stroke-dasharray", "12, 6");
+      .attr("stroke-dasharray", "12, 1.5");
 
   //  all hurricanes legend label
   svg.append("text")
@@ -29,13 +29,13 @@ let createTrendlinesLegend = (svg, w, h, p) => {
   //major hurricanes line snippet
   svg.append("line")
       .attr("class", "trendlineMajorHurricanes")
-      .attr("x1", w/3 + 12)
+      .attr("x1", w/3 + 17)
       .attr("y1", legendLineY + 7)
-      .attr("x2", w/3 + 60)
+      .attr("x2", w/3 + 55)
       .attr("y2", legendLineY + 7)
       .attr("stroke", "#931319")
       .attr("stroke-width", 4)
-      .attr("stroke-dasharray", "12, 6");
+      .attr("stroke-dasharray", "12, 1.5");
 
   //major hurricanes legend label
   svg.append("text")
