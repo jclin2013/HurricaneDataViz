@@ -10,7 +10,7 @@ let createInputs = (svg, h, p) => {
      .html(`
        <div id="yearRangeInputContainer">
          <div>Year Range Interval:</div>
-         <input value=1 type=number min=1 id=intervalInput></input>
+         <input value=1 type=number min=1 max=83 id=intervalInput></input>
          <button id="submitIntervalButton">Submit</button>
          <i class="fa fa-info-circle" aria-hidden="true"></i>
        </div>

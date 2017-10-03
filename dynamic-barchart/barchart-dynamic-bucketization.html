@@ -6,10 +6,7 @@
     <title>Hurricane Data Visualization</title>
 
     <script src="https://use.fontawesome.com/edb8528b4a.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
-    <script>
-      _u = _.noConflict();
-    </script>
+    <script src="./deepDup.js"></script>
     <script src="./d3.js"></script>
 
     <script src="./dataset.js"></script>
@@ -33,7 +30,7 @@
     </svg>
 
     <script>
-      let originalDataset = _u.merge([], dataset);
+      let originalDataset = deepDup(dataset);
       let w = 750, h = 450;
       let p = {bottom: 75, right: 50, top: 90, left: 70};
 
@@ -263,7 +260,7 @@
 
             groupsNewBind.exit().remove();
 
-            let screenedData = _u.merge([], dataset);
+            let screenedData = deepDup(dataset);
             if (dataset.lastBucketIsUneven) {
               screenedData.pop();
 

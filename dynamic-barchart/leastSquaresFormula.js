@@ -1,6 +1,5 @@
 function leastSquares(xSeries, ySeries) {
   let sumFunc = (a, b) => a + b;
-  if (xSeries.length === 0) debugger;
 
   let xBar = xSeries.reduce(sumFunc) / xSeries.length;
   let yBar = ySeries.reduce(sumFunc) / ySeries.length;
