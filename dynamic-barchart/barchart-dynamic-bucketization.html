@@ -43,7 +43,7 @@
       createInputs(svg, h, p);
 
       let xScale = d3.scaleBand()
-                     .domain(d3.range(1851, 2018))
+                     .domain(d3.range(dataset.length))
                      .range([p.left, w - p.right])
                      .paddingInner(0.05);
 
@@ -58,16 +58,13 @@
 
       let tickValuesForXAxis = domain => {
         return domain.filter((v, i) => {
-          // console.log(i, Math.floor(domain.length/5));
-          // if (i === 0 || i === domain.length - 1) return true;
-
           return !(i % (Math.ceil(domain.length/7.5)))
         });
       };
 
       let xAxis = d3.axisBottom(xScale)
-                    // .ticks(5)
                     .tickValues(tickValuesForXAxis(xScale.domain()))
+                    .tickFormat(i => dataset[i].year)
                     .tickSizeInner(10)
                     .tickSizeOuter(0);
 
@@ -75,16 +72,6 @@
                     .tickSizeOuter(0)
                     .ticks(6)
                     .tickFormat(d3.format("d"));
-
-      let gx = svg.append("g")
-                  .attr("class", "x axis")
-                  .attr("transform", "translate(0.5," + (h - p.bottom) + ")")
-                  .call(xAxis);
-
-      let gy = svg.append("g")
-                  .attr("class", "y axis")
-                  .attr("transform", "translate(" + p.left + ", 0)")
-                  .call(yAxis);
 
       let makeHorizGridLines = d3.axisLeft(yScale)
                                  .tickSize(-w + p.left + p.right)
@@ -97,9 +84,19 @@
                      .attr("transform", "translate(" + p.left + ", 0)")
                      .call(makeHorizGridLines);
 
-      svg.selectAll(".tick")
-          .filter(d => d === 0)
-          .remove();
+      let gx = svg.append("g")
+                  .attr("class", "x axis")
+                  .attr("transform", "translate(0.5," + (h - p.bottom) + ")")
+                  .call(xAxis);
+
+      let gy = svg.append("g")
+                  .attr("class", "y axis")
+                  .attr("transform", "translate(" + p.left + ", 0)")
+                  .call(yAxis);
+
+      // svg.selectAll(".tick")
+      //     .filter(d => d === 0)
+      //     .remove();
 
       let title = svg.append("text")
                      .attr("class", "chartTitle")
@@ -131,7 +128,7 @@
 
       barGroups.append("rect")
                .attr("class", "bar allcatbars")
-               .attr("x", d => xScale(d.year) + 1)
+               .attr("x", (d, i) => xScale(i) + 1)
                .attr("y", d => yScale(allHurricanes(d)))
                .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
                .attr("width", xScale.bandwidth())
@@ -139,8 +136,8 @@
 
        let majorHurricanes = d => d.cat3 + d.cat4 + d.cat5;
 
-       let middleOfBigBar = d => (
-         xScale(d.year) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1
+       let middleOfBigBar = (d, i) => (
+         xScale(i) + (xScale.bandwidth() - xScale.bandwidth()/2.5)/2 + 1
        );
 
        barGroups.append("rect")
