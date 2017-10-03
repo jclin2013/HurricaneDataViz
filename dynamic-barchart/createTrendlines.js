@@ -1,7 +1,6 @@
 //Resources used to create best fit line were:
 //http://bl.ocks.org/benvandyke/8459843
 //https://www.varsitytutors.com/hotmath/hotmath_help/topics/line-of-best-fit
-
 let lineProperties = {
   'allHurricanes': [
     allHurricanes, "allHurricanes", "darkgreen"
@@ -11,7 +10,7 @@ let lineProperties = {
   ]
 };
 
-let createSlopeTexts = (dataset, lineType, line) => {
+let createSlopeText = (dataset, lineType, line) => {
   let [sumFunc] = lineProperties[lineType];
 
   let xSeries = d3.range(1851, 2017),
@@ -47,7 +46,7 @@ let createTrendline = (dataset, lineType) => {
 
   let line = d3.select("#trendlineContainer")
                 .append("line")
-                .attr("class", `trendline ${className}`)
+                .attr("class", className)
                 .attr("x1", x1)
                 .attr("y1", y1)
                 .attr("x2", x2)
@@ -56,7 +55,7 @@ let createTrendline = (dataset, lineType) => {
                 .attr("stroke-width", 4)
                 .attr("stroke-dasharray", "12, 1.5");
 
-  createSlopeTexts(dataset, lineType, line);
+  createSlopeText(dataset, lineType, line);
 
   return line;
 };

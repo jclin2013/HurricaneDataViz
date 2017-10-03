@@ -200,7 +200,6 @@
 
             gx.transition().duration(500).call(
               xAxis.scale(xScale)
-                  //  .tickSizeInner(10)
                    .tickValues(tickValuesForXAxis(xScale.domain()))
                    .tickFormat(i => dataset[i].year)
             );
@@ -266,12 +265,12 @@
 
             groupsNewBind.exit().remove();
 
-            updateTrendline(dataset, allHurricanes, lineAllHurricanes);
-            updateTrendline(dataset, majorHurricanes, lineMajorHurricanes);
+            lineAllHurricanes = updateTrendline(dataset, allHurricanes, lineAllHurricanes);
+            lineMajorHurricanes = updateTrendline(dataset, majorHurricanes, lineMajorHurricanes);
         }
     </script>
-    <!-- <script src="./createTrendlines.js"></script>
+    <script src="./createTrendlines.js"></script>
     <script src="./createTrendlinesLegend.js"></script>
-    <script src="./updateTrendline.js"></script> -->
+    <script src="./updateTrendline.js"></script>
   </body>
 </html>
