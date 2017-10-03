@@ -120,7 +120,9 @@
            .style("text-anchor", "middle")
            .text("Number of Hurricanes")
 
-      let barGroups = svg.selectAll("g.barGroups")
+      let barGroups = svg.append("g")
+                         .attr("class", "allBarsContainer")
+                         .selectAll("g.barGroups")
                          .data(dataset, d => d.key)
                          .enter()
                          .append("g")
@@ -166,6 +168,9 @@
         let lineAllHurricanes, lineMajorHurricanes,
             allHurricanesLineSlope, majorHurricanesLineSlope,
             updateTrendline;
+
+        //create a g element for trendlines so they appear on top when updated
+        svg.append("g").attr("id", "trendlineContainer");
 
         function changeHandler(isCheckboxChecked) {
             let interval = +document.querySelector("#intervalInput").value;
@@ -220,8 +225,9 @@
             gridX.transition().duration(500).call(makeHorizGridLines);
 
             //update the bars
-            let groupsNewBind = svg.selectAll(".barGroups")
-                                   .data(dataset, d => d.key);
+            let groupsNewBind = d3.select(".allBarsContainer")
+                                  .selectAll(".barGroups")
+                                  .data(dataset, d => d.key);
 
             let enterGroups = groupsNewBind.enter()
                                            .append("g")
@@ -265,7 +271,6 @@
             updateTrendline(dataset, allHurricanes, lineAllHurricanes);
             updateTrendline(dataset, majorHurricanes, lineMajorHurricanes);
         }
-
     </script>
     <script src="./createTrendlines.js"></script>
     <script src="./createTrendlinesLegend.js"></script>

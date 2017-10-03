@@ -38,7 +38,8 @@ let createTrendline = (dataset, lineType) => {
     majorHurricanesLineSlope = `${slope}x + ${intercept}`;
   }
 
-  let line = svg.append("line")
+  let line = d3.select("#trendlineContainer")
+                .append("line")
                 .attr("class", `trendline ${className}`)
                 .attr("x1", xScale(x1))
                 .attr("y1", yScale(y1))

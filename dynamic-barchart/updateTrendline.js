@@ -29,7 +29,6 @@ updateTrendline = (dataset, sumFunc, line) => {
       .call(slopeTextTransition);
   } else {
     d3.select(".majorHurricanesLineSlope")
-      .text(`slope: ${slope}x + ${intercept}`)
       .call(slopeTextTransition);
   }
 
