@@ -52,18 +52,6 @@ svg {
   filter: url("#contrast");
 }
 
-/*rect {
-  -moz-transition: all 0.25s;
-  -o-transition: all 0.25s;
-  -webkit-transition: all 0.25s;
-  transition: all 0.25s;
-}
-
-rect:hover {
-  fill: orange;
-}*/
-
 .tick > text {
-  /*padding-left: 10px;*/
   font-size: 15px;
 }
