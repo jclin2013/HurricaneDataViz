@@ -4,7 +4,7 @@
 //(That is, it'll allow the last year range to be smaller.)
 
 let yearRangeBucketizer = (data, interval) => {
-  let currentObj = {cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
+  let currentObj = {year: null, cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
   let result = [];
   let count = 0;
   let label;
@@ -28,7 +28,7 @@ let yearRangeBucketizer = (data, interval) => {
       currentObj.year = label;
       currentObj.key = label + "-interval" + interval;
       result.push(currentObj);
-      currentObj = {cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
+      currentObj = {year: null, cat1: 0, cat2: 0, cat3: 0, cat4: 0, cat5: 0};
     }
 
     if (i === data.length - 1 && count % interval !== 0) {

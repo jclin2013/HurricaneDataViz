@@ -32,28 +32,28 @@
 
         <a href="http://www.storytellingwithdata.com/blog/2017/9/13/how-would-you-show-this-data"
            target="_blank">
-           <tspan>NOAA via storytellingwithdata.com</tspan>
+           <tspan class="bottomLink">NOAA via storytellingwithdata.com</tspan>
         </a>
 
         <tspan> / </tspan>
         <tspan class="bottomBoldLabel">Download:</tspan>
 
-        <a href="https://www.dropbox.com/s/w03e14njg6bvg0z/NOAA%20data_%20U.S.%20Hurricanes%20making%20landfall%20by%20category.xlsx?dl=0"
-           target="_blank">
-           <tspan> Original Data | </tspan>
+        <a href="./originalData.csv">
+           <tspan class="bottomLink"> Original Data</tspan>
          </a>
 
-        <a href=""
-           target="_blank">
-           <tspan>Data By Year | </tspan>
-        </a>
+         <tspan> | </tspan>
 
-        <a href="" target="_blank"><tspan>Data on Current Screen</tspan></a>
+         <tspan id="dataByYear" class="bottomLink">Data By Year</tspan>
+
+         <tspan> | </tspan>
+
+         <tspan id="dataOnCurrentScreen" class="bottomLink">Data on Current Screen</tspan>
       </text>
 
       <text id="bylineContainer">
         <a href="www.jon-lin.com" target="_blank">
-          <tspan class="bottomBoldLabel">Built by Jon Lin</tspan>
+          <tspan class="bottomBoldLabel bottomLink">Built by Jon Lin</tspan>
         </a>
       </text>
     </svg>
@@ -325,5 +325,6 @@
     <script src="./updateTrendline.js"></script>
     <script src="./createInfoTooltips.js"></script>
     <script src="./positionBottomLinks.js"></script>
+    <script src="./json-to-csv.js"></script>
   </body>
 </html>

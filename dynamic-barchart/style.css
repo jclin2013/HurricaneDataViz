@@ -78,3 +78,12 @@ button {
 tspan.bottomBoldLabel {
   font-weight: bold;
 }
+
+#dataByYear, #dataOnCurrentScreen {
+  cursor: pointer;
+}
+
+.bottomLink:hover {
+  fill: blue;
+  text-decoration: underline;
+}
