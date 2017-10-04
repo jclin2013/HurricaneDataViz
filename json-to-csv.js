@@ -59,7 +59,7 @@ var headers = {
 };
 
 document.querySelector("#dataOnCurrentScreen")
-        .onclick = () => exportCSVFile(headers, dataset, 'hurricane-data-on-screen');
+        .onclick = () => exportCSVFile(headers, deepDup(dataset), 'hurricane-data-on-screen');
 
 document.querySelector("#dataByYear")
-        .onclick = () => exportCSVFile(headers, originalDataset, 'hurricane-data-by-year');
+        .onclick = () => exportCSVFile(headers, deepDup(originalDataset), 'hurricane-data-by-year');
