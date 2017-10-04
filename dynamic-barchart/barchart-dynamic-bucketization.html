@@ -223,12 +223,11 @@
 
             let enterGroups = groupsNewBind.enter()
                                            .append("g")
-                                           .attr("class", "barGroups")
-                                          //  .call(barTooltip);
+                                           .attr("class", "barGroups");
 
             enterGroups.append("rect")
                        .attr("class", "bar allcatbars")
-                       .attr("x", (d, i, t) => xScale(i) + 1)
+                       .attr("x", (d, i) => xScale(i) + 1)
                        .attr("y", h - p.bottom)
                        .attr("height", 0)
                        .attr("width", xScale.bandwidth())
@@ -252,14 +251,16 @@
                            .duration(500)
                            .attr("x", (d, i) => xScale(i) + 1)
                            .attr("y", d => yScale(allHurricanes(d)))
-                           .attr("height", d => h - p.bottom - yScale(allHurricanes(d)));
+                           .attr("height", d => h - p.bottom - yScale(allHurricanes(d)))
+                           .attr("width", xScale.bandwidth());
 
             updateSelection.select(".majorcatbars")
                            .transition()
                            .duration(500)
-                           .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
+                           .attr("x", middleOfBigBar)
                            .attr("y", d => yScale(majorHurricanes(d)))
-                           .attr("x", middleOfBigBar);
+                           .attr("height", d => h - p.bottom - yScale(majorHurricanes(d)))
+                           .attr("width", xScale.bandwidth()/2.5);
 
             groupsNewBind.exit().remove();
 
