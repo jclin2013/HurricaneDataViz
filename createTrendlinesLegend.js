@@ -50,7 +50,7 @@ let createTrendlinesLegend = (svg, w, h, p) => {
   svg.append("text")
      .attr("class", "allHurricanesLineSlope")
      .attr("y", legendTextY - 7)
-     .attr("x", legendX + 360)
+     .attr("x", legendX + 350)
      .attr("font-size", 12)
      .text(allHurricanesLineSlope);
 
@@ -58,9 +58,22 @@ let createTrendlinesLegend = (svg, w, h, p) => {
   svg.append("text")
      .attr("class", "majorHurricanesLineSlope")
      .attr("y", legendTextY + 7)
-     .attr("x", legendX + 360)
+     .attr("x", legendX + 350)
      .attr("font-size", 12)
      .text(majorHurricanesLineSlope);
+
+   svg.append("foreignObject")
+     .attr('x', legendX + 500)
+     .attr('y',  legendTextY - 25)
+     .attr('width', "10px" )
+     .attr('height', "10px")
+     .append("xhtml:body")
+     .html(
+         `<i style="font-size: 25px"
+         id=slopeInfoIcon
+         class="fa fa-info-circle"
+         aria-hidden="true"></i>`
+      );
 }
 
 createTrendlinesLegend(svg, w, h, p);

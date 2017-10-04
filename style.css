@@ -87,3 +87,7 @@ tspan.bottomBoldLabel {
   fill: blue;
   text-decoration: underline;
 }
+
+.fa-info-circle:hover {
+  color: green;
+}
