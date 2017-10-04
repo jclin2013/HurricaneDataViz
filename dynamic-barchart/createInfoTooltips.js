@@ -3,7 +3,11 @@ function displayTooltip(text, heightOfText) {
   tooltip.classed("hidden", false);
   tooltip.text(text);
   let { left, top } = this.getBoundingClientRect();
-  tooltip.style("left", left + 15 + "px");
+
+  let adjustLeft = 7;
+  if (heightOfText === 95) adjustLeft = 225;
+
+  tooltip.style("left", left + 15 - adjustLeft + "px");
   tooltip.style("top", top - heightOfText + "px");
 };
 
