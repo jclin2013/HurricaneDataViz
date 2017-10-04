@@ -201,6 +201,9 @@
             if (interval > 83) {
               interval = 83;
               document.querySelector("#intervalInput").value = 83;
+            } else if (interval < 1) {
+              interval = 1;
+              document.querySelector("#intervalInput").value = 1;
             }
 
             if (typeof isCheckboxChecked !== "undefined") {
