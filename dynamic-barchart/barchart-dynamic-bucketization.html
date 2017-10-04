@@ -29,16 +29,30 @@
 
       <text id="dataLinksContainer">
         <tspan class="bottomBoldLabel">Source: </tspan>
-        <a href="" target="_blank"><tspan>NOAA via storytellingwithdata.com</tspan></a>
+
+        <a href="http://www.storytellingwithdata.com/blog/2017/9/13/how-would-you-show-this-data"
+           target="_blank">
+           <tspan>NOAA via storytellingwithdata.com</tspan>
+        </a>
+
         <tspan> / </tspan>
         <tspan class="bottomBoldLabel">Download:</tspan>
-        <a href="" target="_blank"><tspan> Original Data | </tspan></a>
-        <a href="" target="_blank"><tspan>Data By Year | </tspan></a>
+
+        <a href="https://www.dropbox.com/s/w03e14njg6bvg0z/NOAA%20data_%20U.S.%20Hurricanes%20making%20landfall%20by%20category.xlsx?dl=0"
+           target="_blank">
+           <tspan> Original Data | </tspan>
+         </a>
+
+        <a href=""
+           target="_blank">
+           <tspan>Data By Year | </tspan>
+        </a>
+
         <a href="" target="_blank"><tspan>Data on Current Screen</tspan></a>
       </text>
 
       <text id="bylineContainer">
-        <a href="" target="_blank">
+        <a href="www.jon-lin.com" target="_blank">
           <tspan class="bottomBoldLabel">Built by Jon Lin</tspan>
         </a>
       </text>
@@ -176,7 +190,7 @@
 
         let lineAllHurricanes, lineMajorHurricanes,
             allHurricanesLineSlope, majorHurricanesLineSlope,
-            updateTrendline;
+            updateTrendline, screenedData;
 
         //create a g element for trendlines so they appear on top when updated
         svg.append("g").attr("id", "trendlineContainer");
@@ -204,8 +218,6 @@
             }
 
             dataset = yearRangeBucketizer(originalDataset, interval);
-
-            console.log(dataset);
 
             //update the xAxis
             xScale.domain(d3.range(dataset.length))
@@ -282,9 +294,16 @@
 
             groupsNewBind.exit().remove();
 
-            let screenedData = deepDup(dataset);
+            let prevNumOfFullBuckets, currentNumOfFullBuckets;
+            if (screenedData) {
+              prevNumOfFullBuckets = screenedData.length;
+            }
+
+            screenedData = deepDup(dataset);
             if (dataset.lastBucketIsUneven) {
               screenedData.pop();
+
+              currentNumOfFullBuckets = screenedData.length;
 
               let lastBarG = document.querySelector(".barGroups:last-child");
               let lastBarGTooltip = lastBarG.querySelector("title");
@@ -296,6 +315,7 @@
                       .forEach(el => el.setAttribute("opacity", "0.4"));
             }
 
+            if (prevNumOfFullBuckets != currentNumOfFullBuckets)
             lineAllHurricanes = updateTrendline(screenedData, allHurricanes, lineAllHurricanes);
             lineMajorHurricanes = updateTrendline(screenedData, majorHurricanes, lineMajorHurricanes);
         }
