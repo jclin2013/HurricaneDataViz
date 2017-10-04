@@ -36,6 +36,7 @@ svg {
   font-size: 18px;
   line-height: 5px;
   outline: none;
+  cursor: pointer;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
@@ -54,4 +55,8 @@ svg {
 
 .tick > text {
   font-size: 15px;
+}
+
+button {
+  cursor: pointer;
 }
