@@ -311,16 +311,10 @@
 
             groupsNewBind.exit().remove();
 
-            let prevNumOfFullBuckets, currentNumOfFullBuckets;
-            if (screenedData) {
-              prevNumOfFullBuckets = screenedData.length;
-            }
-
             screenedData = deepDup(dataset);
+
             if (dataset.lastBucketIsUneven) {
               screenedData.pop();
-
-              currentNumOfFullBuckets = screenedData.length;
 
               let lastBarG = document.querySelector(".barGroups:last-child");
               let lastBarGTooltip = lastBarG.querySelector("title");
@@ -332,7 +326,6 @@
                       .forEach(el => el.setAttribute("opacity", "0.4"));
             }
 
-            if (prevNumOfFullBuckets != currentNumOfFullBuckets)
             lineAllHurricanes = updateTrendline(screenedData, allHurricanes, lineAllHurricanes);
             lineMajorHurricanes = updateTrendline(screenedData, majorHurricanes, lineMajorHurricanes);
         }
