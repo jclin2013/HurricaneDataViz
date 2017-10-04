@@ -14,7 +14,7 @@
     <script src="./createInputs.js"></script>
     <script src="./leastSquaresFormula.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
@@ -26,13 +26,24 @@
           <feFuncB type="linear" slope="0.5" intercept="0.5"></feFuncB>
         </feComponentTransfer>
       </filter>
-      <div id="infoTooltip" class="hidden"></div>
+
+      <text id="dataLinksContainer">
+        <tspan class="bottomBoldLabel">Source: </tspan>
+        <a href="" target="_blank"><tspan>NOAA via storytellingwithdata.com</tspan></a>
+        <tspan> / </tspan>
+        <tspan class="bottomBoldLabel">Download:</tspan>
+        <a href="" target="_blank"><tspan> Original Data | </tspan></a>
+        <a href="" target="_blank"><tspan>Data By Year | </tspan></a>
+        <a href="" target="_blank"><tspan>Data on Current Screen</tspan></a>
+      </text>
     </svg>
+
+    <div id="infoTooltip" class="hidden"></div>
 
     <script>
       let originalDataset = deepDup(dataset);
       let w = 750, h = 450;
-      let p = {bottom: 75, right: 50, top: 90, left: 70};
+      let p = {bottom: 100, right: 50, top: 90, left: 70};
 
       let svg = d3.select("#mainSVG")
                   .attr("viewBox", `0 0 ${w + " " + h}`);
@@ -287,5 +298,6 @@
     <script src="./createTrendlinesLegend.js"></script>
     <script src="./updateTrendline.js"></script>
     <script src="./createInfoTooltips.js"></script>
+    <script src="./positionBottomLinks.js"></script>
   </body>
 </html>

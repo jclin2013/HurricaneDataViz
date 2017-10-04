@@ -1,9 +1,10 @@
 let createInputs = (svg, h, p) => {
   let xOffset = p.left;
+  let yOffset = h - 70;
 
    svg.append("foreignObject")
      .attr('x', xOffset - 10)
-     .attr('y',  h - 50)
+     .attr('y',  yOffset)
      .attr('width', "240px" )
      .attr('height', "20px")
      .append("xhtml:body")
@@ -18,7 +19,7 @@ let createInputs = (svg, h, p) => {
 
   svg.append("foreignObject")
     .attr('x', xOffset + 280)
-    .attr('y',  h - 50)
+    .attr('y',  yOffset)
     .attr('width', "50px")
     .attr('height', "20px")
     .append("xhtml:body")

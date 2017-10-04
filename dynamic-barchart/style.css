@@ -74,3 +74,7 @@ button {
 #infoTooltip.hidden {
   display: none;
 }
+
+tspan.bottomBoldLabel {
+  font-weight: bold;
+}
