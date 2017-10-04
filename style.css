@@ -91,3 +91,16 @@ tspan.bottomBoldLabel {
 .fa-info-circle:hover {
   color: green;
 }
+
+#submitIntervalButton {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: none;
+  border-radius: 4px;
+}
+
+#submitIntervalButton:hover {
+  background-color: green;
+  color: white;
+  border: 1px solid white;
+}
