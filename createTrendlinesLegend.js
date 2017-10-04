@@ -63,7 +63,7 @@ let createTrendlinesLegend = (svg, w, h, p) => {
      .text(majorHurricanesLineSlope);
 
    svg.append("foreignObject")
-     .attr('x', legendX + 500)
+     .attr('x', legendX + 495)
      .attr('y',  legendTextY - 25)
      .attr('width', "10px" )
      .attr('height', "10px")
