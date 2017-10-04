@@ -28,14 +28,13 @@ let yearRangeText =
   but it will be excluded from trendline calculations.`;
 
 let slopeInfoText =
-  `When the data is divided into decades, leaving out 2011-2016,
-  the trendline for major hurricanes has a slightly positive slope,
-  in line with The Economist's data viz at the source link below.
-  But when looking at the data at the level of individual years,
-  spanning the range from 1851 to 2016, the trendline has a
-  slightly negative slope. However, when 2017 is included (which
-  isn't in the original NOAA dataset), the trendline goes very
-  slightly positive.`
+  `If you divide the time series by decades, leaving out 2011-2016,
+  the trendline for major hurricanes shows a slightly positive slope,
+  in line with The Economist's data viz at the source link (bottom).
+  But when looking at the data at the level of individual years
+  spanning 1851 to 2016, the trendline has a slightly negative slope.
+  However, when 2017 is included (which isn't in the default
+  dataset), the trendline returns to being slightly positive.`
 
 let include2017Text =
   `Check the box to add the three category 4 hurricanes that
