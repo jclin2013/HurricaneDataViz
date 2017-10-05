@@ -44,16 +44,16 @@ d3.select("#yearRangeInputContainer .fa-info-circle")
   .on("mouseover", function() {
     displayTooltip.bind(this)(yearRangeText, 170);
   })
-  .on("mouseout", () => d3.select("#infoTooltip").classed("hidden", true));
+  .on("mouseout", hideTooltip);
 
 d3.select("#include2017CheckboxContainer .fa-info-circle")
   .on("mouseover", function() {
     displayTooltip.bind(this)(include2017Text, 95);
   })
-  .on("mouseout", () => d3.select("#infoTooltip").classed("hidden", true));
+  .on("mouseout", hideTooltip);
 
 d3.select("#slopeInfoIcon")
   .on("mouseover", function() {
     displaySlopeInfo.bind(this)(slopeInfoText, 95);
   })
-  .on("mouseout", () => d3.select("#infoTooltip").classed("hidden", true));
+  .on("mouseout", hideTooltip);

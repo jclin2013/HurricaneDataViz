@@ -156,17 +156,58 @@
            .style("text-anchor", "middle")
            .text("Number of Hurricanes")
 
+       //setup tooltip listener and callbacks
+       function displayBarInfo(d) {
+         let tooltip = document.querySelector("#infoTooltip");
+         tooltip.setAttribute("class", "");
+
+         tooltip.innerHTML =
+         `<div>${d.year}</div>
+         <div>Major Hurricanes: ${majorHurricanes(d)}</div>
+         <div>All Hurricanes: ${allHurricanes(d)}</div>`
+
+         let windowW = window.innerWidth;
+        //  let svgW = document.querySelector("svg").getBoundingClientRect();
+         //
+        //  (windowW - svgW)/2 >
+
+         let heightOffset = 0;
+         let lastBarG = document.querySelector(".barGroups:last-child")
+         if (dataset.lastBucketIsUneven && lastBarG === this) {
+           tooltip.innerHTML = "<div>(Remainder Interval)</div>" + tooltip.innerHTML;
+           heightOffset = 20;
+         }
+
+         let tooltipW = 150;
+         let { left, top } = this.getBoundingClientRect();
+         let overflowIsHappening = windowW - (left + tooltipW) < 0;
+         let widthOffset = overflowIsHappening ? tooltipW - 20 : 0;
+
+         tooltip.style.left = left - widthOffset + "px";
+         tooltip.style.top = top - 77 - heightOffset + "px";
+         tooltip.style.width = tooltipW + "px";
+       }
+
+       function hideTooltip() {
+         d3.select("#infoTooltip").classed("hidden", true)
+                                  .style("width", "");
+       }
+
+       let addBarTooltipListener = bar => {
+         bar.on("mouseover", function(d) { displayBarInfo.bind(this)(d) })
+            .on("mouseout", hideTooltip);
+       };
+
+      //begin appending the actual bars: all bars in a single group,
+      //and each pair of bars in its own subgroup
       let barGroups = svg.append("g")
                          .attr("class", "allBarsContainer")
                          .selectAll("g.barGroups")
                          .data(dataset, d => d.key)
                          .enter()
                          .append("g")
-                         .attr("class", "barGroups");
-
-      let tooltip = d => `${d.year}:\nMajor Hurricanes: ${majorHurricanes(d)}\nAll Hurricanes: ${allHurricanes(d)}`;
-      barGroups.append("title")
-               .text(tooltip);
+                         .attr("class", "barGroups")
+                         .call(addBarTooltipListener);
 
       barGroups.append("rect")
                .attr("class", "bar allcatbars")
@@ -188,6 +229,8 @@
                 .attr("width", xScale.bandwidth()/2.5)
                 .attr("fill", "pink");
 
+
+        //set up listeners for the interval input
         document.querySelector("#intervalInput")
                 .onkeypress = e => { if (e.key === "Enter") changeHandler(); };
 
@@ -209,6 +252,8 @@
         //create a g element for trendlines so they appear on top when updated
         svg.append("g").attr("id", "trendlineContainer");
 
+        //big callback for all the updating that has to take place when
+        //the interval changes
         function changeHandler(isCheckboxChecked) {
             let interval = +document.querySelector("#intervalInput").value;
 
@@ -290,8 +335,7 @@
 
             let updateSelection = enterGroups.merge(groupsNewBind)
 
-            updateSelection.append("title")
-                           .text(tooltip);
+            updateSelection.call(addBarTooltipListener);
 
             updateSelection.select(".allcatbars")
                            .transition()
@@ -317,11 +361,6 @@
               screenedData.pop();
 
               let lastBarG = document.querySelector(".barGroups:last-child");
-              let lastBarGTooltip = lastBarG.querySelector("title");
-              let currentText = lastBarGTooltip.innerHTML;
-
-              lastBarGTooltip.innerHTML = "(Remainder Interval)\n" + currentText;
-
               lastBarG.querySelectorAll(".bar")
                       .forEach(el => el.setAttribute("opacity", "0.4"));
             }
