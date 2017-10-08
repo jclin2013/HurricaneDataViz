@@ -25,9 +25,9 @@ let createSlopeText = (dataset, lineType, line) => {
       .text(`${m}x + ${b}`);
 
   if (lineType === "allHurricanes") {
-    allHurricanesLineSlope = `equation: ${m}x + ${b}`;
+    allHurricanesLineSlope = `slope: ${m}`;
   } else {
-    majorHurricanesLineSlope = `equation: ${m}x + ${b}`;
+    majorHurricanesLineSlope = `slope: ${m}`;
   }
 };
 
