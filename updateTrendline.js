@@ -17,7 +17,7 @@ let updateSlopeText = (dataset, lineType, line) => {
     .transition()
     .duration(250)
     .attr("opacity", "1")
-    .text(`equation: ${m}x + ${b}`);
+    .text(`slope: ${m}`);
 
   line.select("title")
       .text(`${m}x + ${b}`);
