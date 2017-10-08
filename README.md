@@ -1,5 +1,10 @@
-# Number of Hurricanes in America Over Time
+# Hurricane Data Visualization
 * [Live link][live-link]
+
+## Technologies Used
+* D3.js
+* vanilla JavaScript
+
 
 ## Background
 
@@ -59,7 +64,7 @@ The slope of the best fit line goes back to being (slightly) positive:
 
 <img src="./one-year-interval-chart-plus-2017.png"></img>
 
-Still, given that the slopes don't appear to have the same contrast as the original Economist graphic, perhaps a chart can't really perform the visual rhetoric of saying "Hey, look: Major hurricanes are becoming more frequent while hurricanes as a whole are becoming less frequent, in line with what climate models predict."
+Still, given that the slopes aren't as contrasting as the original Economist graphic, perhaps a chart can't really perform the visual rhetoric of saying "Hey, look: Major hurricanes are becoming more frequent while hurricanes as a whole are becoming less frequent, in line with what climate models predict."
 
 That's not to say climate models are wrong; it's just that based on the NOAA dataset we're examining, I'm not sure it's possible to reliably illustrate that claim. But I'm also not well-versed in statistics, so maybe there is a way that I just don't know about.
 
