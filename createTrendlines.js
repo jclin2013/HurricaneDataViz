@@ -13,7 +13,7 @@ let lineProperties = {
 let createSlopeText = (dataset, lineType, line) => {
   let [sumFunc] = lineProperties[lineType];
 
-  let xSeries = d3.range(1851, 2017),
+  let xSeries = d3.range(dataset.length),
       ySeries = dataset.map(sumFunc);
 
   let [m, b] = leastSquares(xSeries, ySeries);

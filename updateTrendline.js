@@ -1,17 +1,7 @@
 let updateSlopeText = (dataset, lineType, line) => {
   let [sumFunc] = lineProperties[lineType];
 
-  let range;
-  if (dataset[0].key.match(/interval1$/)) {
-    range = d3.range(
-      +dataset[0].year,
-      +dataset[dataset.length - 1].year + 1
-    );
-  } else {
-    range = d3.range(dataset.length);
-  }
-
-  let xSeries = range,
+  let xSeries = d3.range(dataset.length),
       ySeries = dataset.map(sumFunc);
 
   let [m, b] = leastSquares(xSeries, ySeries);
