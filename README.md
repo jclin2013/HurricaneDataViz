@@ -87,3 +87,7 @@ It's perhaps still worth noting that the number of all hurricanes over time tren
 ### The chart updates when 2017 data is added
 
 <img src="./chart-2017-change.gif"></img>
+
+### Tooltips show for each bar and info icon
+
+<img src="./chart-tooltips-demo.gif"></img>
