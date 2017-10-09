@@ -58,19 +58,17 @@ What we find is that the slope of the best fit line for major hurricanes goes ne
 
 <img src="./one-year-interval-chart.png"></img>
 
-But what if we include 2017 (which isn't in the original dataset, probably because 2017 isn't over yet), which has so far seen three category 4 hurricanes make landfall in the U.S.?
+But what if we include 2017 (which isn't in the original dataset, probably because 2017 isn't over yet), which has so far seen three category 4 hurricanes (and one category 1 hurricane) make landfall in the U.S.?
 
 The slope of the best fit line goes back to being (slightly) positive:
 
 <img src="./one-year-interval-chart-plus-2017.png"></img>
 
-Still, given that the slopes aren't as contrasting as the original Economist graphic, perhaps a chart can't really perform the visual rhetoric of saying "Hey, look: Major hurricanes are becoming more frequent while hurricanes as a whole are becoming less frequent, in line with what climate models predict."
+Still, given that the slopes aren't as contrasting as the original Economist graphic, perhaps a chart can't really perform the visual rhetoric of saying "Major hurricanes are becoming more frequent while hurricanes as a whole are becoming less frequent, in line with what climate models predict."
 
-That's not to say climate models are wrong; it's just that based on the NOAA dataset we're examining, I'm not sure it's possible to reliably illustrate that claim. But I'm also not well-versed in statistics, so maybe there is a way that I just don't know about.
+That's not to say climate models are wrong; it's just that based on the NOAA dataset we're examining, I'm not sure it's possible to reliably illustrate that claim.
 
-It's perhaps still worth noting that the number of all hurricanes over time trends downward, while the number of major hurricanes doesn't (i.e. is either flat or slightly positive), which would mean a greater _percentage_ of hurricanes consists of major hurricanes over time. If that's the message we want to go with, a chart portraying that could be as follows. (I've included The Economist's chart next to mine for direct comparison.)
-
-<!-- <img src="./five-year-interval-chart.png"></img> -->
+It's perhaps still worth noting that the number of all hurricanes over time trends downward, while the number of major hurricanes doesn't (i.e. is either flat or slightly positive), which suggests a greater _percentage_ of hurricanes has consisted of major hurricanes over time.
 
 [storytelling-with-data-link]: http://www.storytellingwithdata.com/blog/2017/9/13/how-would-you-show-this-data
 
@@ -84,4 +82,8 @@ It's perhaps still worth noting that the number of all hurricanes over time tren
 
 ### The chart updates when given different time intervals (the axes, bars, trendlines, and slope values all update)
 
+<img src="./chart-interval-change.gif"></img>
+
 ### The chart updates when 2017 data is added
+
+<img src="./chart-2017-change.gif"></img>
