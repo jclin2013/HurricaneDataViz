@@ -16,7 +16,7 @@ After The Economist [published an article][economist-link] headlined "Hurricanes
 
 The Economist's aforementioned chart is below:
 
-<img src="./economist-stacked-barchart.png"></img>
+<img src="lib/economist-stacked-barchart.png"></img>
 
 Looking over the chart and [the article that accompanied it][economist-link], I had a few observations:
 * The chart is positioned next to the sentence "Climate models predict that man-made global warming will not lead to a greater number of tropical cyclones overall, but will make those that do occur more intense."
@@ -46,7 +46,7 @@ Looking over the chart and [the article that accompanied it][economist-link], I 
   * If it's because a more granular view would make the graphic harder to read, that's understandable, but it seems like a five-year interval could still be readable while allowing the trendlines to take into account more of the available data (thus, making for more accurate trendlines).
   * Here's what that alternative might look like, along with the other proposed changes I've mentioned up to this point, using my data viz tool. It's a prototype taking up roughly the same amount of space:
 
-<img src="./five-year-interval-chart.png"></img>
+<img src="lib/five-year-interval-chart.png"></img>
 
 ##### Notice that with the five-year-interval chart, which takes into account more data from America's [hurricane-drought period][wapo-link] (2006 to 2016), the trendline for major hurricanes looks a lot flatter. The slope for the linear best fit line is actually 0.
 
@@ -56,13 +56,13 @@ Given that the trendlines present a different picture when the time series is bu
 
 What we find is that the slope of the best fit line for major hurricanes goes negative (very, very slightly, i.e. so slightly it's not noticeable here if not for the indicated slope value):
 
-<img src="./one-year-interval-chart.png"></img>
+<img src="lib/one-year-interval-chart.png"></img>
 
 But what if we include 2017 (which isn't in the original dataset, probably because 2017 isn't over yet), which has so far seen three category 4 hurricanes (and one category 1 hurricane) make landfall in the U.S.?
 
 The slope of the best fit line goes back to being (slightly) positive:
 
-<img src="./one-year-interval-chart-plus-2017.png"></img>
+<img src="lib/one-year-interval-chart-plus-2017.png"></img>
 
 Still, given that the slopes aren't as contrasting as the original Economist graphic, perhaps a chart can't really perform the visual rhetoric of saying "Major hurricanes are becoming more frequent while hurricanes as a whole are becoming less frequent, in line with what climate models predict."
 
@@ -82,12 +82,12 @@ It's perhaps still worth noting that the number of all hurricanes over time tren
 
 ### The chart updates when given different time intervals (the axes, bars, trendlines, and slope values all update)
 
-<img src="./chart-interval-change.gif"></img>
+<img src="lib/chart-interval-change.gif"></img>
 
 ### The chart updates when 2017 data is added
 
-<img src="./chart-2017-change.gif"></img>
+<img src="lib/chart-2017-change.gif"></img>
 
 ### Tooltips show for each bar and info icon
 
-<img src="./chart-tooltips-demo.gif"></img>
+<img src="lib/chart-tooltips-demo.gif"></img>
