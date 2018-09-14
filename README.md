@@ -74,7 +74,7 @@ It's perhaps still worth noting that the number of all hurricanes over time tren
 
 [economist-link]: https://www.economist.com/blogs/graphicdetail/2017/09/daily-chart-5
 
-[live-link]: https://jclin2013.github.io/HurricaneDataViz/
+[live-link]: https://jon-lin.github.io/HurricaneDataViz/
 
 [wapo-link]: https://www.washingtonpost.com/news/capital-weather-gang/wp/2016/08/04/the-u-s-coast-is-in-an-unprecedented-hurricane-drought-why-this-is-terrifying/?utm_term=.e33cb80cb4ff
 
